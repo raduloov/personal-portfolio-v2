@@ -4,13 +4,14 @@ import { Navigation } from "./components/ui/Navigation";
 import { Hero } from "./components/sections/Hero";
 import { About } from "./components/sections/About";
 import { Projects } from "./components/sections/Projects";
+import { Certifications } from "./components/sections/Certifications";
 
 function App() {
   const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["home", "about", "projects"];
+      const sections = ["home", "about", "projects", "certifications"];
       const scrollPosition = window.scrollY + 100;
 
       for (const section of sections) {
@@ -44,6 +45,7 @@ function App() {
         <Hero onScrollToSection={scrollToSection} />
         <About />
         <Projects />
+        <Certifications />
       </main>
     </>
   );

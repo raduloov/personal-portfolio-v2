@@ -5,7 +5,6 @@ interface ImageProps {
   height?: string | number
   width?: string | number
   placeholder?: string
-  rounded?: boolean
   cover?: boolean
 }
 
@@ -16,7 +15,6 @@ export function Image({
   height = '250px', 
   width = '100%',
   placeholder = '[Image]',
-  rounded = false,
   cover = false
 }: ImageProps) {
   return (
