@@ -25,6 +25,19 @@ function App() {
           }
         }
       }
+
+      // Handle scroll indicator fade
+      const scrollIndicator = document.querySelector('.scroll-indicator');
+      if (scrollIndicator) {
+        const heroHeight = window.innerHeight;
+        const fadeThreshold = heroHeight * 0.8; // Start fading at 80% of hero height
+        
+        if (window.scrollY > fadeThreshold) {
+          scrollIndicator.classList.add('fade-out');
+        } else {
+          scrollIndicator.classList.remove('fade-out');
+        }
+      }
     };
 
     window.addEventListener("scroll", handleScroll);

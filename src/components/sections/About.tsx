@@ -1,20 +1,21 @@
 import { SkillCard } from '../ui/SkillCard'
+import profileImage from '../../assets/profile.jpg'
 
 const skills = [
   {
     icon: <span style={{ fontSize: '32px', color: 'var(--accent-primary)' }}>⚡</span>,
-    title: 'Frontend Development',
-    description: 'Building responsive and interactive user interfaces with React, TypeScript, and modern CSS.'
+    title: 'Web Development',
+    description: 'Building responsive and interactive web applications with React, TypeScript, and modern frontend technologies.'
   },
   {
-    icon: <span style={{ fontSize: '32px', color: 'var(--accent-primary)' }}>🔧</span>,
-    title: 'Backend Development',
-    description: 'Creating robust server-side applications with Node.js, databases, and RESTful APIs.'
+    icon: <span style={{ fontSize: '32px', color: 'var(--accent-primary)' }}>📱</span>,
+    title: 'Mobile Development',
+    description: 'Creating native mobile experiences with React Native for iOS and Android platforms.'
   },
   {
-    icon: <span style={{ fontSize: '32px', color: 'var(--accent-primary)' }}>🎨</span>,
-    title: 'UI/UX Design',
-    description: 'Designing intuitive and beautiful interfaces that provide excellent user experiences.'
+    icon: <span style={{ fontSize: '32px', color: 'var(--accent-primary)' }}>🔌</span>,
+    title: 'EV Industry',
+    description: 'Full-stack engineering for electric vehicle charging infrastructure and AWS workflows.'
   }
 ]
 
@@ -24,29 +25,29 @@ export function About() {
       <div className="container">
         <div className="about-grid">
           <div className="about-image">
-            <div style={{ 
-              width: '100%', 
-              height: '100%', 
-              background: 'var(--gradient-subtle)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: 'var(--text-tertiary)'
-            }}>
-              [Your Photo]
-            </div>
+            <img 
+              src={profileImage} 
+              alt="Yavor Radulov"
+              style={{ 
+                width: '100%', 
+                height: '100%',
+                objectFit: 'cover',
+                borderRadius: 'inherit'
+              }}
+            />
           </div>
           <div className="about-content">
             <h2>About Me</h2>
             <p>
-              I'm a developer with a passion for creating exceptional digital experiences. 
-              With expertise in modern web technologies, I bring ideas to life through clean, 
-              efficient code and thoughtful design.
+              I am a Mobile / Web Developer with a strong proficiency in Front-End Development. 
+              Currently working professionally in the EV industry as a full-stack engineer at AMPECO, 
+              where I'm helping to power the electric vehicle charging infrastructure of tomorrow.
             </p>
             <p>
-              My journey in development started with curiosity and has evolved into a 
-              dedication to crafting solutions that make a difference. I believe in the 
-              power of technology to solve problems and enhance lives.
+              With over 2 years of professional experience, I've worked on diverse projects ranging from 
+              developing and maintaining web, hybrid, and native applications to building micro-services, 
+              infrastructure, and AWS workflows. My journey has included working with enterprise pharmaceutical 
+              clients at News UK and contributing to innovative solutions in the sustainable transportation sector.
             </p>
           </div>
         </div>
