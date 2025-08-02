@@ -74,7 +74,7 @@
 /* Scroll Indicator */
 .scrollIndicator {
   position: absolute;
-  bottom: var(--space-8);
+  bottom: calc(var(--space-8) + env(safe-area-inset-bottom, 0px));
   left: 0;
   right: 0;
   margin: 0 auto;
@@ -266,7 +266,7 @@
   }
   
   .scrollIndicator {
-    bottom: var(--space-6);
+    bottom: calc(var(--space-6) + env(safe-area-inset-bottom, 0px) + 60px);
   }
   
   .scrollText {
