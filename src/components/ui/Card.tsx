@@ -1,4 +1,5 @@
 import type { HTMLAttributes } from 'react'
+import styles from './Card.module.css'
 
 interface CardProps extends HTMLAttributes<HTMLDivElement> {
   elevated?: boolean
@@ -6,7 +7,7 @@ interface CardProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export function Card({ elevated = false, children, className = '', ...props }: CardProps) {
-  const baseClasses = elevated ? 'card card-elevated' : 'card'
+  const baseClasses = elevated ? `${styles.card} ${styles.cardElevated}` : styles.card
   
   return (
     <div 

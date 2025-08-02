@@ -1,3 +1,5 @@
+import styles from './Image.module.css'
+
 interface ImageProps {
   src?: string
   alt: string
@@ -19,7 +21,7 @@ export function Image({
 }: ImageProps) {
   return (
     <div 
-      className={`image-container ${className}`}
+      className={`${styles.imageContainer} ${className}`}
       style={{ 
         height, 
         width
@@ -29,13 +31,13 @@ export function Image({
         <img 
           src={src} 
           alt={alt} 
-          className="image"
+          className={styles.image}
           style={{
             objectFit: cover ? 'cover' : 'contain'
           }}
         />
       ) : (
-        <div className="image-placeholder">{placeholder}</div>
+        <div className={styles.imagePlaceholder}>{placeholder}</div>
       )}
     </div>
   )

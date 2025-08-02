@@ -1,0 +1,20 @@
+/* Projects Section */
+.projectsSection {
+  background: var(--secondary-bg);
+}
+
+.projectsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: var(--space-8);
+  margin-top: var(--space-8);
+  justify-items: stretch;
+  align-items: start;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .projectsGrid {
+    grid-template-columns: 1fr;
+  }
+}

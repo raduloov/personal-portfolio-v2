@@ -1,5 +1,6 @@
 import { SkillCard } from '../ui/SkillCard'
 import profileImage from '../../assets/profile.jpg'
+import styles from './About.module.css'
 
 const skills = [
   {
@@ -21,10 +22,10 @@ const skills = [
 
 export function About() {
   return (
-    <section id="about" className="section about">
-      <div className="container">
-        <div className="about-grid">
-          <div className="about-image">
+    <section id="about" className={`${styles.section} ${styles.about}`}>
+      <div className={styles.container}>
+        <div className={styles.aboutGrid}>
+          <div className={styles.aboutImage}>
             <img 
               src={profileImage} 
               alt="Yavor Radulov"
@@ -36,7 +37,7 @@ export function About() {
               }}
             />
           </div>
-          <div className="about-content">
+          <div className={styles.aboutContent}>
             <h2>About Me</h2>
             <p>
               I am a Mobile / Web Developer with a strong proficiency in Front-End Development. 
@@ -52,7 +53,7 @@ export function About() {
           </div>
         </div>
 
-        <div className="skills-grid">
+        <div className={styles.skillsGrid}>
           {skills.map((skill, index) => (
             <SkillCard 
               key={index}

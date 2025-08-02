@@ -1,0 +1,21 @@
+/* Card Styles */
+.card {
+  background: var(--tertiary-bg);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: var(--shadow-md);
+  transition: all var(--duration-slow) var(--ease-out);
+  overflow: hidden;
+}
+
+.cardElevated {
+  background: var(--surface-bg);
+  box-shadow: var(--shadow-lg);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-xl);
+  border-color: rgba(255, 159, 67, 0.2);
+}

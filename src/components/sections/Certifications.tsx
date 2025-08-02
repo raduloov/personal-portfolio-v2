@@ -3,6 +3,7 @@ import { certificationsData } from '../../data/certificationsData'
 import type { Certification } from '../../data/certificationsData'
 import { Card } from '../ui/Card'
 import { Modal } from '../ui/Modal'
+import styles from './Certifications.module.css'
 
 export function Certifications() {
   const [selectedCert, setSelectedCert] = useState<Certification | null>(null)
@@ -18,23 +19,23 @@ export function Certifications() {
   return (
     <section id="certifications" className="section certifications">
       <div className="container">
-        <h2 className="section-title">Certifications</h2>
-        <div className="certifications-grid">
+        <h2 className={styles.sectionTitle}>Certifications</h2>
+        <div className={styles.certificationsGrid}>
           {certificationsData.map((cert) => (
             <Card 
               key={cert.id} 
-              className="certification-card clickable" 
+              className={`${styles.certificationCard} ${styles.clickable}`} 
               onClick={() => handleCardClick(cert)}
             >
-              <div className="certification-icon">
+              <div className={styles.certificationIcon}>
                 <span style={{ fontSize: '48px' }}>🏆</span>
               </div>
-              <h3 className="certification-title">{cert.title}</h3>
-              <p className="certification-issuer">{cert.issuer}</p>
-              <p className="certification-date">{cert.date}</p>
-              <div className="certification-skills">
+              <h3 className={styles.certificationTitle}>{cert.title}</h3>
+              <p className={styles.certificationIssuer}>{cert.issuer}</p>
+              <p className={styles.certificationDate}>{cert.date}</p>
+              <div className={styles.certificationSkills}>
                 {cert.skills.map((skill, index) => (
-                  <span key={index} className="skill-tag">{skill}</span>
+                  <span key={index} className={styles.skillTag}>{skill}</span>
                 ))}
               </div>
               {cert.credentialUrl && (
@@ -42,7 +43,7 @@ export function Certifications() {
                   href={cert.credentialUrl} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="certification-link"
+                  className={styles.certificationLink}
                   onClick={(e) => e.stopPropagation()}
                 >
                   View Credential →
@@ -58,7 +59,7 @@ export function Certifications() {
           <img 
             src={selectedCert.image} 
             alt={selectedCert.title}
-            className="certification-image-only"
+            className={styles.certificationImageOnly}
           />
         )}
       </Modal>

@@ -1,4 +1,5 @@
 import type { ButtonHTMLAttributes } from 'react'
+import styles from './Button.module.css'
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary'
@@ -6,7 +7,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 export function Button({ variant = 'primary', children, className = '', ...props }: ButtonProps) {
-  const baseClasses = variant === 'primary' ? 'btn-primary' : 'btn-secondary'
+  const baseClasses = variant === 'primary' ? styles.btnPrimary : styles.btnSecondary
   
   return (
     <button 

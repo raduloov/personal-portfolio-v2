@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import styles from './Modal.module.css'
 
 interface ModalProps {
   isOpen: boolean
@@ -28,9 +29,9 @@ export function Modal({ isOpen, onClose, children }: ModalProps) {
   if (!isOpen) return null
 
   return (
-    <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-content modal-image-content" onClick={(e) => e.stopPropagation()}>
-        <button className="modal-close" onClick={onClose} aria-label="Close modal">
+    <div className={styles.modalOverlay} onClick={onClose}>
+      <div className={`${styles.modalContent} ${styles.modalImageContent}`} onClick={(e) => e.stopPropagation()}>
+        <button className={styles.modalClose} onClick={onClose} aria-label="Close modal">
           ×
         </button>
         {children}

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import styles from './Navigation.module.css'
 
 interface NavItem {
   id: string
@@ -45,26 +46,26 @@ export function Navigation({ activeSection, onItemClick }: NavigationProps) {
 
   return (
     <>
-      <nav className="nav">
-        <div className="nav-container">
-          <a href="#" className="nav-logo">Portfolio</a>
+      <nav className={styles.nav}>
+        <div className={styles.navContainer}>
+          <a href="#" className={styles.navLogo}>Portfolio</a>
           
           <button 
-            className="nav-toggle"
+            className={styles.navToggle}
             onClick={toggleMenu}
             aria-label="Toggle navigation menu"
           >
-            <span className={`nav-toggle-bar ${isMenuOpen ? 'open' : ''}`}></span>
-            <span className={`nav-toggle-bar ${isMenuOpen ? 'open' : ''}`}></span>
-            <span className={`nav-toggle-bar ${isMenuOpen ? 'open' : ''}`}></span>
+            <span className={`${styles.navToggleBar} ${isMenuOpen ? styles.open : ''}`}></span>
+            <span className={`${styles.navToggleBar} ${isMenuOpen ? styles.open : ''}`}></span>
+            <span className={`${styles.navToggleBar} ${isMenuOpen ? styles.open : ''}`}></span>
           </button>
 
-          <ul className={`nav-menu ${isMenuOpen ? 'active' : ''}`}>
+          <ul className={`${styles.navMenu} ${isMenuOpen ? styles.active : ''}`}>
             {navItems.map((item) => (
               <li key={item.id}>
                 <a 
                   href={`#${item.id}`}
-                  className={`nav-item ${activeSection === item.id ? 'active' : ''}`}
+                  className={`${styles.navItem} ${activeSection === item.id ? styles.active : ''}`}
                   onClick={(e) => handleClick(e, item.id)}
                 >
                   {item.label}
@@ -76,7 +77,7 @@ export function Navigation({ activeSection, onItemClick }: NavigationProps) {
       </nav>
       {isMenuOpen && (
         <div 
-          className="nav-overlay"
+          className={styles.navOverlay}
           onClick={() => setIsMenuOpen(false)}
           aria-hidden="true"
         />

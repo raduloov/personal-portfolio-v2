@@ -1,12 +1,13 @@
 import { ProjectCard } from '../ui/ProjectCard'
 import { projectsData } from '../../data/projectsData'
+import styles from './Projects.module.css'
 
 export function Projects() {
   return (
-    <section id="projects" className="section">
+    <section id="projects" className={`section ${styles.projectsSection}`}>
       <div className="container">
         <h2 style={{ textAlign: 'center', marginBottom: 'var(--space-8)' }}>Featured Projects</h2>
-        <div className="projects-grid">
+        <div className={styles.projectsGrid}>
           {projectsData.map((project, index) => (
             <ProjectCard 
               key={index}

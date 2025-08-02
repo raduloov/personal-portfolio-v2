@@ -1,4 +1,5 @@
 import { Card } from './Card'
+import styles from './SkillCard.module.css'
 
 interface SkillCardProps {
   icon: React.ReactNode
@@ -8,8 +9,8 @@ interface SkillCardProps {
 
 export function SkillCard({ icon, title, description }: SkillCardProps) {
   return (
-    <Card className="skill-card">
-      <div className="skill-icon">
+    <Card className={styles.skillCard}>
+      <div className={styles.skillIcon}>
         {icon}
       </div>
       <h3>{title}</h3>
