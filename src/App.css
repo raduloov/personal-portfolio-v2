@@ -505,8 +505,9 @@
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
+  top: calc(0.75em + 6px);
   width: 2px;
-  height: 100%;
+  height: calc(100% - var(--space-12) - 0.75em - 6px);
   background: rgba(255, 159, 67, 0.2);
 }
 
@@ -520,7 +521,8 @@
   content: '';
   position: absolute;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%) translateY(-50%);
+  top: 0.75em;
   width: 12px;
   height: 12px;
   background: var(--accent-primary);
@@ -602,6 +604,8 @@
 @media (max-width: 768px) {
   .experience-timeline::before {
     left: 30px;
+    top: calc(0.75em + 6px);
+    height: calc(100% - var(--space-12) - 0.75em - 6px);
   }
   
   .experience-item {
@@ -611,7 +615,8 @@
   
   .experience-item::before {
     left: -10px;
-    transform: translateX(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    top: 0.75em;
   }
   
   .experience-date {
