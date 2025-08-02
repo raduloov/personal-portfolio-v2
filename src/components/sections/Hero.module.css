@@ -1,6 +1,7 @@
 /* Hero Section */
 .hero {
   min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -260,13 +261,19 @@
 
 /* Responsive */
 @media (max-width: 768px) {
+  .hero {
+    min-height: 100vh;
+    min-height: 100dvh;
+    min-height: -webkit-fill-available;
+  }
+  
   .heroCta {
     flex-direction: column;
     align-items: center;
   }
   
   .scrollIndicator {
-    bottom: calc(var(--space-6) + env(safe-area-inset-bottom, 0px) + 60px);
+    bottom: calc(var(--space-8) + env(safe-area-inset-bottom, 20px));
   }
   
   .scrollText {

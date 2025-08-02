@@ -48,7 +48,7 @@ export function Navigation({ activeSection, onItemClick }: NavigationProps) {
     <>
       <nav className={styles.nav}>
         <div className={styles.navContainer}>
-          <a href="#" className={styles.navLogo}>Portfolio</a>
+          <a href="#" className={styles.navLogo}>Developer portfolio</a>
           
           <button 
             className={styles.navToggle}
