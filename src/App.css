@@ -331,59 +331,6 @@
   border: 1px solid rgba(255, 159, 67, 0.2);
 }
 
-/* Contact Section */
-.contact {
-  background: var(--secondary-bg);
-  text-align: center;
-}
-
-.contact-form {
-  max-width: 600px;
-  margin: var(--space-8) auto 0;
-}
-
-.form-group {
-  margin-bottom: var(--space-6);
-  text-align: left;
-}
-
-.form-label {
-  display: block;
-  margin-bottom: var(--space-2);
-  font-size: var(--text-sm);
-  color: var(--text-secondary);
-  font-weight: var(--font-medium);
-}
-
-.form-input,
-.form-textarea {
-  width: 100%;
-  background: var(--primary-bg);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: var(--radius-md);
-  padding: var(--space-3) var(--space-4);
-  color: var(--text-primary);
-  font-size: var(--text-base);
-  font-weight: var(--font-light);
-  transition: all var(--duration-fast) var(--ease-out);
-}
-
-.form-input:focus,
-.form-textarea:focus {
-  outline: none;
-  border-color: var(--accent-primary);
-  box-shadow: 0 0 0 3px rgba(255, 159, 67, 0.1);
-}
-
-.form-input::placeholder,
-.form-textarea::placeholder {
-  color: var(--text-tertiary);
-}
-
-.form-textarea {
-  resize: vertical;
-  min-height: 120px;
-}
 
 /* Animations */
 @keyframes fadeIn {
@@ -404,6 +351,67 @@
   50% {
     box-shadow: var(--shadow-glow-lg);
   }
+}
+
+/* Social Icons */
+.social-icons {
+  display: flex;
+  gap: var(--space-3);
+  align-items: center;
+  justify-content: center;
+}
+
+.social-icon-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-secondary);
+  transition: all var(--duration-normal) var(--ease-out);
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.social-icon-link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--gradient-primary);
+  opacity: 0;
+  transition: opacity var(--duration-normal) var(--ease-out);
+}
+
+.social-icon-link:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg), var(--shadow-glow-sm);
+  border-color: var(--accent-primary);
+  color: var(--text-primary);
+}
+
+.social-icon-link:hover::before {
+  opacity: 0.1;
+}
+
+.social-icon {
+  width: 20px;
+  height: 20px;
+  transition: all var(--duration-normal) var(--ease-out);
+  position: relative;
+  z-index: 1;
+}
+
+.social-icon-link:hover .social-icon {
+  transform: scale(1.1);
+  color: var(--accent-primary);
 }
 
 /* Responsive */

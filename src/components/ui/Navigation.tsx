@@ -12,7 +12,6 @@ const navItems: NavItem[] = [
   { id: 'home', label: 'Home' },
   { id: 'about', label: 'About' },
   { id: 'projects', label: 'Projects' },
-  { id: 'contact', label: 'Contact' },
 ]
 
 export function Navigation({ activeSection, onItemClick }: NavigationProps) {
