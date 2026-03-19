@@ -1,4 +1,7 @@
 /* Work Experience Section */
+.experience {
+  background: var(--primary-bg);
+}
 
 .experienceTimeline {
   position: relative;

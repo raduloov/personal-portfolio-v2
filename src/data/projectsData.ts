@@ -12,6 +12,7 @@ import gymPals from "../assets/projects/gym-pals.png";
 import teniskiVarna from "../assets/projects/teniski-varna.png";
 import esp8266Pager from "../assets/projects/esp8266-pager.png";
 import uniswapTracker from "../assets/projects/uniswap.png";
+import fpsFoundation from "../assets/fps-foundation.png";
 
 export interface Project {
   imageUrl: string;
@@ -25,6 +26,17 @@ export interface Project {
 }
 
 export const projectsData: Project[] = [
+  {
+    imageUrl: fpsFoundation,
+    title: "The Francesco Salerno Foundation",
+    date: "19.03.2026",
+    description:
+      "A nonprofit website with donations via Stripe, a blog, events, and multilingual support. Built with Payload CMS and Supabase.",
+    demoUrl: "https://francescosalerno.org",
+    gitUrl: null,
+    tags: ["Next.js", "TypeScript", "Payload CMS", "Stripe", "Supabase", "Tailwind"],
+    language: "TypeScript"
+  },
   {
     imageUrl: uniswapTracker,
     title: "Uniswap Position Tracker",

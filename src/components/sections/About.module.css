@@ -1,6 +1,12 @@
 /* About Section */
 .about {
   background: var(--secondary-bg);
+  position: relative;
+  z-index: 2;
+  margin-top: -100vh;
+  margin-top: -100dvh;
+  opacity: 0;
+  will-change: opacity;
 }
 
 .section {

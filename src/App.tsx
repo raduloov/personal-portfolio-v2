@@ -46,9 +46,33 @@ function App() {
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+    if (!element) return;
+
+    // If scrolling from hero to about, scroll through the full hero animation
+    const hero = document.getElementById('home');
+    const navHeight = document.querySelector('nav')?.offsetHeight ?? 0;
+    if (sectionId === 'about' && hero && window.scrollY < hero.offsetHeight) {
+      const target = hero.offsetHeight - window.innerHeight;
+      smoothScrollTo(target, 1500);
+    } else {
+      smoothScrollTo(element.offsetTop - navHeight, 800);
     }
+  };
+
+  const smoothScrollTo = (target: number, duration: number) => {
+    const start = window.scrollY;
+    const distance = target - start;
+    if (distance === 0) return;
+
+    let startTime: number | null = null;
+    const step = (timestamp: number) => {
+      if (!startTime) startTime = timestamp;
+      const progress = Math.min((timestamp - startTime) / duration, 1);
+      window.scrollTo(0, start + distance * progress);
+      if (progress < 1) requestAnimationFrame(step);
+    };
+
+    requestAnimationFrame(step);
   };
 
   return (

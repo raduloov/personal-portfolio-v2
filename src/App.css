@@ -8,6 +8,8 @@
 /* Global Section Styles */
 .section {
   padding: var(--space-20) 0;
+  position: relative;
+  z-index: 2;
 }
 
 .section-title {

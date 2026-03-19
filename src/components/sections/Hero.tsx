@@ -1,14 +1,146 @@
+import { useEffect, useRef, useState } from 'react'
+import { Particles } from '../ui/Particles'
+import { TextShimmer } from '../ui/TextShimmer'
 import styles from './Hero.module.css'
+
+const TOTAL_FRAMES = 121
+
+function preloadFrames(): Promise<HTMLImageElement[]> {
+  return Promise.all(
+    Array.from({ length: TOTAL_FRAMES }, (_, i) => {
+      return new Promise<HTMLImageElement>((resolve) => {
+        const img = new Image()
+        img.src = `/frames/frame-${String(i + 1).padStart(3, '0')}.jpg`
+        img.onload = () => resolve(img)
+        img.onerror = () => resolve(img)
+      })
+    })
+  )
+}
 
 interface HeroProps {
   onScrollToSection: (sectionId: string) => void
 }
 
 export function Hero({ onScrollToSection }: HeroProps) {
+  const sectionRef = useRef<HTMLElement>(null)
+  const canvasRef = useRef<HTMLCanvasElement>(null)
+  const contentRef = useRef<HTMLDivElement>(null)
+  const framesRef = useRef<HTMLImageElement[]>([])
+  const currentFrameRef = useRef(0)
+  const rafRef = useRef<number>(0)
+  const [loaded, setLoaded] = useState(false)
+
+  useEffect(() => {
+    preloadFrames().then((frames) => {
+      framesRef.current = frames
+      setLoaded(true)
+
+      // Draw first frame
+      const canvas = canvasRef.current
+      if (canvas && frames[0]) {
+        canvas.width = frames[0].naturalWidth
+        canvas.height = frames[0].naturalHeight
+        const ctx = canvas.getContext('2d')
+        ctx?.drawImage(frames[0], 0, 0)
+      }
+    })
+  }, [])
+
+  useEffect(() => {
+    if (!loaded) return
+
+    const section = sectionRef.current
+    const canvas = canvasRef.current
+    if (!section || !canvas) return
+
+    const ctx = canvas.getContext('2d')
+    if (!ctx) return
+
+    const handleScroll = () => {
+      cancelAnimationFrame(rafRef.current)
+      rafRef.current = requestAnimationFrame(() => {
+        const rect = section.getBoundingClientRect()
+        const sectionHeight = section.offsetHeight - window.innerHeight
+        const scrolled = -rect.top
+        const progress = Math.max(0, Math.min(1, scrolled / sectionHeight))
+        const frameIndex = Math.min(
+          TOTAL_FRAMES - 1,
+          Math.floor(progress * TOTAL_FRAMES)
+        )
+
+        if (frameIndex !== currentFrameRef.current) {
+          currentFrameRef.current = frameIndex
+          const frame = framesRef.current[frameIndex]
+          if (frame) {
+            ctx.drawImage(frame, 0, 0)
+          }
+        }
+
+        // Fade out content over the first 60% of scroll
+        if (contentRef.current) {
+          const fadeProgress = Math.min(1, progress / 0.6)
+          contentRef.current.style.opacity = String(1 - fadeProgress)
+          contentRef.current.style.transform = `translateY(${fadeProgress * -40}px)`
+        }
+
+        // Fade in About section over the last 30%
+        const aboutEl = document.getElementById('about')
+        if (aboutEl) {
+          const aboutFade = progress > 0.7 ? (progress - 0.7) / 0.3 : 0
+          aboutEl.style.opacity = String(aboutFade)
+        }
+
+        // Hide scroll indicator as we scroll
+        const scrollBtn = section.querySelector('button') as HTMLElement
+        if (scrollBtn) {
+          const hidden = progress > 0.05
+          scrollBtn.style.display = hidden ? 'none' : ''
+        }
+      })
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      cancelAnimationFrame(rafRef.current)
+    }
+  }, [loaded])
+
   return (
-    <section id="home" className={styles.hero}>
-      <div className={styles.heroBackground}></div>
-      <div className={styles.heroContent}>
+    <section id="home" className={styles.hero} ref={sectionRef}>
+      {!loaded && (
+        <div className={styles.loader}>
+          <div className={styles.cookingScene}>
+            <div className={styles.egg}>
+              <div className={styles.eggWhite}>
+                <div className={styles.eggYolk} />
+              </div>
+            </div>
+            <div className={styles.eggShadow} />
+            <div className={styles.pan}>
+              <div className={styles.panBase}>
+                <div className={styles.panInner} />
+                <div className={styles.panHandle} />
+              </div>
+            </div>
+          </div>
+          <TextShimmer className={styles.loaderText} duration={1.5}>Cooking...</TextShimmer>
+        </div>
+      )}
+      <div className={styles.videoContainer}>
+        <canvas ref={canvasRef} className={styles.heroCanvas} />
+      </div>
+      <div className={styles.heroOverlay}></div>
+      <Particles
+        className={styles.particles}
+        quantity={80}
+        size={0.5}
+        color="#ffffff"
+        staticity={40}
+        ease={60}
+      />
+      <div className={styles.heroContent} ref={contentRef}>
         <p className={styles.heroSubtitle}>Developer Portfolio</p>
         <h1 className={styles.heroTitle}>
           <span className={styles.heroTitleGradient}>Yavor Radulov</span>
@@ -35,10 +167,10 @@ export function Hero({ onScrollToSection }: HeroProps) {
           </div>
         </div>
       </div>
-      
+
       {/* Scroll Indicator */}
-      <button 
-        className={styles.scrollIndicator} 
+      <button
+        className={styles.scrollIndicator}
         onClick={() => onScrollToSection('about')}
         onKeyDown={(e) => {
           if (e.key === 'Enter' || e.key === ' ') {

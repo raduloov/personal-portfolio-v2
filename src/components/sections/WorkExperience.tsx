@@ -3,7 +3,7 @@ import styles from './WorkExperience.module.css'
 
 export function WorkExperience() {
   return (
-    <section id="experience" className="section">
+    <section id="experience" className={`section ${styles.experience}`}>
       <div className="container">
         <h2 style={{ textAlign: 'center', marginBottom: 'var(--space-8)' }}>Work Experience</h2>
         <div className={styles.experienceTimeline}>
