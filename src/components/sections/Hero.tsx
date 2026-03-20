@@ -3,14 +3,14 @@ import { Particles } from '../ui/Particles'
 import { TextShimmer } from '../ui/TextShimmer'
 import styles from './Hero.module.css'
 
-const TOTAL_FRAMES = 121
+const TOTAL_FRAMES = 61
 
 function preloadFrames(): Promise<HTMLImageElement[]> {
   return Promise.all(
     Array.from({ length: TOTAL_FRAMES }, (_, i) => {
       return new Promise<HTMLImageElement>((resolve) => {
         const img = new Image()
-        img.src = `/frames/frame-${String(i + 1).padStart(3, '0')}.jpg`
+        img.src = `/frames/frame-${String(i + 1).padStart(3, '0')}.webp`
         img.onload = () => resolve(img)
         img.onerror = () => resolve(img)
       })
