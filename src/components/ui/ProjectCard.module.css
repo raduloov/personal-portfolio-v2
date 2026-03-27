@@ -1,17 +1,85 @@
-/* Project Card specific styles */
+/* macOS Window wrapper — perspective container only */
+.macWindow {
+  perspective: 1000px;
+  height: 100%;
+}
+
+/* Inner card — receives 3D transform + all visual chrome */
 .projectCard {
   position: relative;
-  overflow: hidden;
   height: 100%;
   display: flex;
   flex-direction: column;
   padding: 0;
+  background: var(--tertiary-bg);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  transform-origin: center center;
+  transition: transform 0.5s ease-out, box-shadow 0.3s ease-out, border-color 0.3s ease-out;
 }
 
-.projectCard .imageContainer {
-  height: 250px;
+.projectCard.tilting {
+  transition: transform 0.15s ease-out, box-shadow 0.3s ease-out, border-color 0.3s ease-out;
 }
 
+.projectCard:hover {
+  border-color: rgba(255, 159, 67, 0.2);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 159, 67, 0.1);
+}
+
+/* Title bar */
+.titleBar {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.04);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.trafficLights {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+  width: 56px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.dotRed {
+  background-color: #ff5f57;
+}
+
+.dotYellow {
+  background-color: #febc2e;
+}
+
+.dotGreen {
+  background-color: #28c840;
+}
+
+.windowTitle {
+  flex: 1;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Spacer to balance traffic lights for centering */
+.titleBarSpacer {
+  width: 56px;
+  flex-shrink: 0;
+}
+
+/* Project content */
 .projectContent {
   padding: var(--space-6);
   flex: 1;
@@ -89,17 +157,36 @@
 
 /* Responsive */
 @media (max-width: 768px) {
-  .projectCard {
+  .macWindow {
     max-width: 100%;
   }
-  
-  .projectCard .imageContainer {
+
+  .projectCard :global(.project-image) {
     height: 200px;
   }
 }
 
 @media (max-width: 480px) {
-  .projectCard .imageContainer {
+  .projectCard :global(.project-image) {
     height: 180px;
+  }
+}
+
+/* Only enable tilt transitions on hover-capable devices */
+@media (hover: hover) {
+  .projectCard {
+    transition: transform 0.5s ease-out;
+  }
+
+  .projectCard.tilting {
+    transition: transform 0.15s ease-out;
+  }
+}
+
+/* Touch devices: simple lift on active */
+@media (hover: none) {
+  .projectCard:active {
+    transform: translateY(-4px);
+    transition: transform 0.3s ease-out;
   }
 }
