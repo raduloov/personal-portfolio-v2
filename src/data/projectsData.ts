@@ -13,6 +13,8 @@ import teniskiVarna from "../assets/projects/teniski-varna.png";
 import esp8266Pager from "../assets/projects/esp8266-pager.png";
 import uniswapTracker from "../assets/projects/uniswap.png";
 import fpsFoundation from "../assets/fps-foundation.png";
+import scorpionTrans from "../assets/projects/scorpion-trans.webp";
+import roundwork from "../assets/projects/roundwork.webp";
 
 export interface Project {
   imageUrl: string;
@@ -26,6 +28,28 @@ export interface Project {
 }
 
 export const projectsData: Project[] = [
+  {
+    imageUrl: roundwork,
+    title: "Roundwork",
+    date: "01.10.2026",
+    description:
+      "A boxing and MMA round timer for iOS and Android. Bells, warning clacks and voice cues keep playing with the screen off and mix with your own music. Comes with built-in and custom presets and vibration cues, and works fully offline with no account or ads. Built with Expo and React Native.",
+    demoUrl: null,
+    gitUrl: null,
+    tags: ["React Native", "Expo", "TypeScript", "iOS", "Android", "Zustand"],
+    language: "TypeScript"
+  },
+  {
+    imageUrl: scorpionTrans,
+    title: "Scorpion Trans",
+    date: "06.04.2026",
+    description:
+      "A booking system for a vehicle inspection station in Dobrich, Bulgaria. Customers book inspection slots online and get email confirmations. The admin dashboard has day, week and month schedule views, rescheduling, blocked dates and configurable working hours. Built with Next.js, Prisma and Neon Postgres.",
+    demoUrl: "https://www.scorpion-trans.com",
+    gitUrl: null,
+    tags: ["Next.js", "TypeScript", "Prisma", "PostgreSQL", "NextAuth", "Tailwind"],
+    language: "TypeScript"
+  },
   {
     imageUrl: fpsFoundation,
     title: "The Francesco Salerno Foundation",
