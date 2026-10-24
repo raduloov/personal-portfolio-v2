@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react'
 import { Image } from './Image'
 import { getLanguageColor } from '../../utils/languageColors'
+import googlePlayBadge from '../../assets/google-play-badge.png'
 import styles from './ProjectCard.module.css'
 
 const languageExtensions: Record<string, string> = {
@@ -27,13 +28,14 @@ interface ProjectCardProps {
   tags: string[]
   demoUrl?: string | null
   gitUrl?: string | null
+  playStoreUrl?: string | null
   date?: string
   language?: string
 }
 
 const MAX_TILT = 8
 
-export function ProjectCard({ title, description, image, tags, demoUrl, gitUrl, date, language }: ProjectCardProps) {
+export function ProjectCard({ title, description, image, tags, demoUrl, gitUrl, playStoreUrl, date, language }: ProjectCardProps) {
   const wrapperRef = useRef<HTMLDivElement>(null)
   const [transform, setTransform] = useState('')
   const [isHovering, setIsHovering] = useState(false)
@@ -109,7 +111,7 @@ export function ProjectCard({ title, description, image, tags, demoUrl, gitUrl, 
               <span key={index} className={styles.projectTag}>{tag}</span>
             ))}
           </div>
-          {(demoUrl || gitUrl) && (
+          {(demoUrl || gitUrl || playStoreUrl) && (
             <div className={styles.projectLinks}>
               {demoUrl && (
                 <a href={demoUrl} target="_blank" rel="noopener noreferrer" className={styles.projectLink}>
@@ -119,6 +121,11 @@ export function ProjectCard({ title, description, image, tags, demoUrl, gitUrl, 
               {gitUrl && (
                 <a href={gitUrl} target="_blank" rel="noopener noreferrer" className={styles.projectLink}>
                   View Code →
+                </a>
+              )}
+              {playStoreUrl && (
+                <a href={playStoreUrl} target="_blank" rel="noopener noreferrer" className={styles.storeBadge}>
+                  <img src={googlePlayBadge} alt="Get it on Google Play" />
                 </a>
               )}
             </div>

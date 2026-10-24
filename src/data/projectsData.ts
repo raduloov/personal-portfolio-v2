@@ -23,6 +23,7 @@ export interface Project {
   description: string;
   demoUrl: string | null;
   gitUrl: string | null;
+  playStoreUrl?: string | null;
   tags: string[];
   language?: string;
 }
@@ -36,6 +37,7 @@ export const projectsData: Project[] = [
       "A boxing and MMA round timer for iOS and Android. Bells, warning clacks and voice cues keep playing with the screen off and mix with your own music. Comes with built-in and custom presets and vibration cues, and works fully offline with no account or ads. Built with Expo and React Native.",
     demoUrl: null,
     gitUrl: null,
+    playStoreUrl: "https://play.google.com/store/apps/details?id=com.yavorradulov.roundwork",
     tags: ["React Native", "Expo", "TypeScript", "iOS", "Android", "Zustand"],
     language: "TypeScript"
   },

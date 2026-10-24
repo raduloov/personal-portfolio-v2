@@ -17,6 +17,7 @@ export function Projects() {
               tags={project.tags}
               demoUrl={project.demoUrl}
               gitUrl={project.gitUrl}
+              playStoreUrl={project.playStoreUrl}
               date={project.date}
               language={project.language}
             />

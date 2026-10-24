@@ -10,7 +10,7 @@ export interface WorkExperience {
 
 export const workExperienceData: WorkExperience[] = [
   {
-    position: "Software Engineer",
+    position: "Senior Software Engineer",
     company: "AMPECO",
     location: "Sofia, Bulgaria · Remote",
     startDate: "Mar 2025",
