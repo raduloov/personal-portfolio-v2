@@ -24,6 +24,14 @@
   overflow-wrap: anywhere;
 }
 
+/* Phones: scale with the viewport so the longest title ("Certifications")
+   stays on one line instead of breaking mid-word */
+@media (max-width: 600px) {
+  .title {
+    font-size: clamp(2.4rem, 11.4vw, 4.2rem);
+  }
+}
+
 .foot {
   display: inline-flex;
   align-items: center;
