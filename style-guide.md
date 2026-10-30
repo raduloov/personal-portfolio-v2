@@ -111,3 +111,8 @@ drawer whose rows cascade in.
   `clamp(16px, 4vw, 56px)`.
 - Section padding `clamp(64px, 9vw, 140px)`.
 - Breakpoints used: 560px, 640px, 768px, 860px, 960px, 1000px, 1100px.
+
+### Loader
+While the hero frames preload, a small tilted `card` paper sheet on ink shows
+the name, "LOADING" with ticking dots, a tape-striped progress bar and the
+frame count; it fades out when the first frame is drawn.

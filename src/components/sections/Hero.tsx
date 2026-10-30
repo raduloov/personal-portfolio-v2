@@ -1,18 +1,24 @@
 import { useEffect, useRef, useState } from "react";
-import { TextShimmer } from "../ui/TextShimmer";
 import { Spark } from "../ui/Spark";
+import { PaperSheet } from "../ui/PaperSheet";
 import styles from "./Hero.module.css";
 
 const TOTAL_FRAMES = 61;
 
-function preloadFrames(): Promise<HTMLImageElement[]> {
+function preloadFrames(onProgress: (done: number) => void): Promise<HTMLImageElement[]> {
+  let done = 0;
   return Promise.all(
     Array.from({ length: TOTAL_FRAMES }, (_, i) => {
       return new Promise<HTMLImageElement>(resolve => {
         const img = new Image();
         img.src = `/frames/frame-${String(i + 1).padStart(3, "0")}.webp`;
-        img.onload = () => resolve(img);
-        img.onerror = () => resolve(img);
+        const finish = () => {
+          done += 1;
+          onProgress(done);
+          resolve(img);
+        };
+        img.onload = finish;
+        img.onerror = finish;
       });
     })
   );
@@ -32,10 +38,14 @@ export function Hero({ onScrollToSection }: HeroProps) {
   const currentFrameRef = useRef(-1);
   const rafRef = useRef(0);
   const [loaded, setLoaded] = useState(false);
+  const [loaderGone, setLoaderGone] = useState(false);
+  const [framesDone, setFramesDone] = useState(0);
 
   useEffect(() => {
     let disposed = false;
-    preloadFrames().then(frames => {
+    preloadFrames(n => {
+      if (!disposed) setFramesDone(n);
+    }).then(frames => {
       if (disposed) return;
       framesRef.current = frames;
       const canvas = canvasRef.current;
@@ -46,6 +56,10 @@ export function Hero({ onScrollToSection }: HeroProps) {
         currentFrameRef.current = 0;
       }
       setLoaded(true);
+      // let the loader fade before unmounting it
+      window.setTimeout(() => {
+        if (!disposed) setLoaderGone(true);
+      }, 450);
     });
     return () => {
       disposed = true;
@@ -103,25 +117,28 @@ export function Hero({ onScrollToSection }: HeroProps) {
 
   return (
     <section id="home" className={styles.hero} ref={sectionRef}>
-      {!loaded && (
-        <div className={`${styles.loader} paper--ink`}>
-          <div className={styles.cookingScene}>
-            <div className={styles.egg}>
-              <div className={styles.eggWhite}>
-                <div className={styles.eggYolk} />
-              </div>
+      {!loaderGone && (
+        <div className={`${styles.loader} paper--ink ${loaded ? styles.loaderHide : ""}`} aria-live="polite">
+          <PaperSheet variant="card" className={styles.loaderCard}>
+            <p className="eyebrow eyebrow--ink">Yavor Radulov</p>
+            <h2 className={`display ${styles.loaderTitle}`}>
+              Loading<span className={styles.loaderDots} aria-hidden="true" />
+            </h2>
+            <div
+              className={styles.progress}
+              role="progressbar"
+              aria-valuemin={0}
+              aria-valuemax={100}
+              aria-valuenow={Math.round((framesDone / TOTAL_FRAMES) * 100)}
+            >
+              <span style={{ width: `${(framesDone / TOTAL_FRAMES) * 100}%` }} />
             </div>
-            <div className={styles.eggShadow} />
-            <div className={styles.pan}>
-              <div className={styles.panBase}>
-                <div className={styles.panInner} />
-                <div className={styles.panHandle} />
-              </div>
-            </div>
-          </div>
-          <TextShimmer className={styles.loaderText} duration={1.5}>
-            Cooking...
-          </TextShimmer>
+            <p className={`mono-label ${styles.loaderMeta}`}>
+              {String(Math.round((framesDone / TOTAL_FRAMES) * 100)).padStart(2, "0")}%
+              <Spark />
+              {framesDone} / {TOTAL_FRAMES}
+            </p>
+          </PaperSheet>
         </div>
       )}
 
