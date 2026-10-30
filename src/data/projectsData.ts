@@ -69,18 +69,6 @@ export const projectsData: Project[] = [
     language: "TypeScript"
   },
   {
-    imageUrl: uniswapTracker,
-    title: "Uniswap Position Tracker",
-    windowName: "uniswap-position-tracker.tsx",
-    date: "19.09.2025",
-    description:
-      "An automated tracking system for Uniswap V3 liquidity positions that logs historical data and generates web reports. Tracks positions using The Graph API, calculates USD values and uncollected fees, and generates daily HTML reports with optional Supabase cloud storage integration.",
-    demoUrl: "https://raduloov.github.io/uniswap-position-tracker",
-    gitUrl: "https://github.com/raduloov/uniswap-position-tracker",
-    tags: ["TypeScript", "Uniswap V3", "GitHub Actions", "Supabase"],
-    language: "TypeScript"
-  },
-  {
     imageUrl: esp8266Pager,
     title: "ESP8266 Pager",
     windowName: "esp8266-pager.c",
@@ -101,6 +89,18 @@ export const projectsData: Project[] = [
     demoUrl: "https://teniskivarna.com/",
     gitUrl: null,
     tags: ["E-commerce", "React", "TypeScript"],
+    language: "TypeScript"
+  },
+  {
+    imageUrl: uniswapTracker,
+    title: "Uniswap Position Tracker",
+    windowName: "uniswap-position-tracker.tsx",
+    date: "19.09.2025",
+    description:
+      "An automated tracking system for Uniswap V3 liquidity positions that logs historical data and generates web reports. Tracks positions using The Graph API, calculates USD values and uncollected fees, and generates daily HTML reports with optional Supabase cloud storage integration.",
+    demoUrl: "https://raduloov.github.io/uniswap-position-tracker",
+    gitUrl: "https://github.com/raduloov/uniswap-position-tracker",
+    tags: ["TypeScript", "Uniswap V3", "GitHub Actions", "Supabase"],
     language: "TypeScript"
   },
   {
