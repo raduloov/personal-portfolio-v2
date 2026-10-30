@@ -124,20 +124,20 @@ export function Hero({ onScrollToSection }: HeroProps) {
             <h2 className={`display ${styles.loaderTitle}`}>
               Loading<span className={styles.loaderDots} aria-hidden="true" />
             </h2>
-            <div
-              className={styles.progress}
-              role="progressbar"
-              aria-valuemin={0}
-              aria-valuemax={100}
-              aria-valuenow={Math.round((framesDone / TOTAL_FRAMES) * 100)}
-            >
-              <span style={{ width: `${(framesDone / TOTAL_FRAMES) * 100}%` }} />
+            <div className={styles.loaderRow}>
+              <div
+                className={styles.progress}
+                role="progressbar"
+                aria-valuemin={0}
+                aria-valuemax={100}
+                aria-valuenow={Math.round((framesDone / TOTAL_FRAMES) * 100)}
+              >
+                <span style={{ width: `${(framesDone / TOTAL_FRAMES) * 100}%` }} />
+              </div>
+              <span className={`mono-label ${styles.loaderMeta}`}>
+                {String(Math.round((framesDone / TOTAL_FRAMES) * 100)).padStart(2, "0")}%
+              </span>
             </div>
-            <p className={`mono-label ${styles.loaderMeta}`}>
-              {String(Math.round((framesDone / TOTAL_FRAMES) * 100)).padStart(2, "0")}%
-              <Spark />
-              {framesDone} / {TOTAL_FRAMES}
-            </p>
           </PaperSheet>
         </div>
       )}

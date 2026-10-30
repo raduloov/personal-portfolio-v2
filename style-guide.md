@@ -114,5 +114,5 @@ drawer whose rows cascade in.
 
 ### Loader
 While the hero frames preload, a small tilted `card` paper sheet on ink shows
-the name, "LOADING" with ticking dots, a tape-striped progress bar and the
-frame count; it fades out when the first frame is drawn.
+the name, "LOADING" with ticking dots, and a plain yellow progress bar with
+the percentage beside it; it fades out when the first frame is drawn.
