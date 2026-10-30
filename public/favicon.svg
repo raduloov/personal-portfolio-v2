@@ -2,11 +2,9 @@
   <!-- round yellow button with ink border and hard red offset, like the hero social buttons -->
   <circle cx="35" cy="35" r="27" fill="#c8311f"/>
   <circle cx="30" cy="30" r="27" fill="#fabf0b" stroke="#1a1a18" stroke-width="3"/>
-  <!-- hash, slightly slanted -->
-  <g fill="none" stroke="#1a1a18" stroke-width="5.5" stroke-linecap="round" transform="translate(30 30) skewX(-8) translate(-30 -30)">
-    <path d="M24.5 16 20 44"/>
-    <path d="M39.5 16 35 44"/>
-    <path d="M16 24.5h30"/>
-    <path d="M14 36h30"/>
+  <!-- semicolon -->
+  <g fill="#1a1a18">
+    <circle cx="30" cy="20" r="5.2"/>
+    <path d="M24.8 35.2a5.2 5.2 0 1 1 10.4 0c0 4.6-2.6 8.4-7 10.3l-1.7-2.6c2.3-1.2 3.8-2.8 4.3-4.6a5.2 5.2 0 0 1-6-3.1z"/>
   </g>
 </svg>
