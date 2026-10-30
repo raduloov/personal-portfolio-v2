@@ -229,15 +229,6 @@
   width: 22px;
   height: 22px;
   flex-shrink: 0;
-  fill: var(--yellow);
-}
-
-.playLogo path:nth-child(2) {
-  fill: var(--red);
-}
-
-.playLogo path:nth-child(3) {
-  fill: var(--cream);
 }
 
 .playText {

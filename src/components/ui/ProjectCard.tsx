@@ -117,10 +117,10 @@ export function ProjectCard({
                   aria-label="Get it on Google Play"
                 >
                   <svg className={styles.playLogo} viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M3.6 2.3 13.3 12l-9.7 9.7a1.6 1.6 0 0 1-.5-1.2V3.5c0-.5.2-.9.5-1.2z" />
-                    <path d="m14.7 13.4 2.4 2.4-9.5 5.4c-.6.3-1.2.4-1.7.2l8.8-8z" />
-                    <path d="M14.7 10.6 5.9 2.6c.5-.2 1.1-.1 1.7.2l9.5 5.4-2.4 2.4z" />
-                    <path d="m18.3 12.6-3.3 1.9L12.6 12l2.4-2.5 3.3 1.9c1.2.7 1.2 1.6 0 2.2z" />
+                    <path fill="#00D7FE" d="M1.2 1.4A2 2 0 0 0 .8 2.7v18.6a2 2 0 0 0 .4 1.3l.1.1 10.4-10.4v-.2L1.3 1.3l-.1.1z" />
+                    <path fill="#FFCE00" d="m15.2 15.8-3.5-3.5v-.2l3.5-3.5.1.1 4.1 2.3c1.2.7 1.2 1.8 0 2.4l-4.1 2.3-.1.1z" />
+                    <path fill="#FF3A44" d="M15.3 15.7 11.7 12 1.2 22.6c.4.4 1 .5 1.8.1l12.3-7z" />
+                    <path fill="#00F076" d="M15.3 8.3 3 1.3c-.8-.4-1.4-.3-1.8.1L11.7 12l3.6-3.7z" />
                   </svg>
                   <span className={styles.playText}>
                     <span className={styles.playSmall}>Get it on</span>
