@@ -45,13 +45,13 @@ export function Projects() {
                 onClick={() => setExpanded((e) => !e)}
                 aria-expanded={expanded}
               >
-                {expanded ? 'See less' : `See more`}
+                {expanded ? 'Hide older' : 'See older'}
                 <svg className={`ico ${styles.moreIcon} ${expanded ? styles.moreIconUp : ''}`} viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </button>
               {!expanded && (
-                <span className={`mono-label ${styles.moreCount}`}>{hidden} more</span>
+                <span className={`mono-label ${styles.moreCount}`}>{hidden} older projects</span>
               )}
             </div>
           )}
