@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./App.css";
+import { Analytics } from "@vercel/analytics/react";
 import { Navigation } from "./components/ui/Navigation";
 import { Hero } from "./components/sections/Hero";
 import { About } from "./components/sections/About";
@@ -85,6 +86,7 @@ function App() {
       </main>
 
       <div className="grain" aria-hidden="true" />
+      <Analytics />
     </>
   );
 }
