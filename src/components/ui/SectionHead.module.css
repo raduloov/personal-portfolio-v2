@@ -1,0 +1,33 @@
+.head {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(28px, 4vw, 56px);
+  min-height: clamp(300px, 42vw, 420px);
+  padding: clamp(40px, 5vw, 64px) var(--gutter) clamp(28px, 3vw, 40px);
+  text-align: center;
+  overflow: hidden;
+}
+
+.eyebrow {
+  justify-content: center;
+  letter-spacing: 0.38em;
+}
+
+.title {
+  font-size: clamp(4.2rem, 13.5vw, 15rem);
+  line-height: 0.86;
+  color: var(--cream);
+  text-wrap: balance;
+  overflow-wrap: anywhere;
+}
+
+.foot {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8em;
+  color: var(--cream-70);
+  letter-spacing: 0.3em;
+}

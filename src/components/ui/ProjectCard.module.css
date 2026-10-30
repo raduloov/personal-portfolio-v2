@@ -1,216 +1,222 @@
-/* macOS Window wrapper — perspective container only */
-.macWindow {
+/* Perspective wrapper for the pointer-driven 3D tilt */
+.tilt {
   perspective: 1000px;
   height: 100%;
 }
 
-/* Inner card — receives 3D transform + all visual chrome */
-.projectCard {
+/* Paper macOS window with a hard offset shadow */
+.window {
   position: relative;
   height: 100%;
+  transform-origin: center center;
+  transition: transform 0.5s ease-out;
   display: flex;
   flex-direction: column;
-  padding: 0;
-  background: var(--tertiary-bg);
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  box-shadow: var(--shadow-md);
+  background: var(--paper-layers), var(--cream);
+  background-blend-mode: multiply;
+  color: var(--ink);
+  border: 2px solid var(--ink);
+  box-shadow: 10px 12px 0 var(--yellow);
   overflow: hidden;
-  transform-origin: center center;
-  transition: transform 0.5s ease-out, box-shadow 0.3s ease-out, border-color 0.3s ease-out;
 }
 
-.projectCard.tilting {
-  transition: transform 0.15s ease-out, box-shadow 0.3s ease-out, border-color 0.3s ease-out;
+/* Faster follow while the pointer is over the card */
+.window.tilting {
+  transition: transform 0.15s ease-out;
 }
 
-.projectCard:hover {
-  border-color: rgba(255, 159, 67, 0.2);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 159, 67, 0.1);
+/* Touch devices: no tilt, a small lift on press */
+@media (hover: none) {
+  .window.tilting {
+    transition: none;
+  }
+
+  .window:active {
+    transform: translateY(-4px) !important;
+    transition: transform 0.3s ease-out;
+  }
 }
 
 /* Title bar */
 .titleBar {
   display: flex;
   align-items: center;
-  padding: 12px 16px;
-  background: rgba(255, 255, 255, 0.04);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  gap: 12px;
+  padding: 10px 14px;
+  background: var(--paper-layers), var(--paper-white);
+  background-blend-mode: multiply;
+  border-bottom: 2px solid var(--ink);
 }
 
-.trafficLights {
+.lights {
   display: flex;
   gap: 8px;
   flex-shrink: 0;
-  width: 56px;
 }
 
-.dot {
+.light {
   width: 12px;
   height: 12px;
-  border-radius: 50%;
+  border-radius: 999px;
+  border: 1.5px solid var(--ink);
 }
 
-.dotRed {
-  background-color: #ff5f57;
+.lightRed {
+  background: var(--red);
 }
 
-.dotYellow {
-  background-color: #febc2e;
+.lightYellow {
+  background: var(--yellow);
 }
 
-.dotGreen {
-  background-color: #28c840;
+.lightCream {
+  background: var(--cream);
 }
 
-.windowTitle {
+.windowName {
   flex: 1;
+  min-width: 0;
   text-align: center;
-  color: rgba(255, 255, 255, 0.5);
-  font-size: 13px;
+  font: 500 0.6875rem/1 var(--font-mono);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-/* Spacer to balance traffic lights for centering */
-.titleBarSpacer {
-  width: 56px;
+.number {
   flex-shrink: 0;
+  font: 500 0.6875rem/1 var(--font-mono);
+  letter-spacing: 0.14em;
 }
 
-/* Project content */
-.projectContent {
-  padding: var(--space-6);
+/* Screenshot */
+.screen {
+  position: relative;
+  background: var(--ink);
+  border-bottom: 2px solid var(--ink);
+  overflow: hidden;
+}
+
+/* The screen takes the screenshot's own height, capped so tall ones get a
+   top-anchored crop; wide ones are simply shorter. Nothing letterboxes. */
+.screen img {
+  width: 100%;
+  height: auto;
+  max-height: 240px;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+}
+
+.placeholder {
+  min-height: 160px;
+}
+
+.placeholder {
+  display: grid;
+  place-items: center;
+  height: 100%;
+  font: 500 0.75rem/1 var(--font-mono);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--cream-70);
+}
+
+.tag {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  padding: 5px 10px;
+  background: var(--yellow);
+  color: var(--ink);
+  border: 1.5px solid var(--ink);
+  box-shadow: 2px 2px 0 var(--ink);
+  font: 900 0.6875rem/1 var(--font-heavy);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transform: rotate(-4deg);
+}
+
+/* Body: grows so the links row sits at the bottom of equal-height cards */
+.body {
   flex: 1;
   display: flex;
   flex-direction: column;
+  gap: 12px;
+  padding: 18px 18px 20px;
 }
 
-.projectContent h3 {
-  margin-bottom: var(--space-3);
+.head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
 }
 
-.projectContent p {
-  color: var(--text-secondary);
-  font-weight: var(--font-light);
-  margin-bottom: var(--space-4);
+.title {
+  font-size: clamp(1.7rem, 2.1vw, 2rem);
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  text-shadow: 0.028em 0.018em 0 var(--yellow);
+  overflow-wrap: anywhere;
 }
 
-.projectTags {
+.date {
+  flex-shrink: 0;
+  font: 900 0.75rem/1 var(--font-heavy);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.desc {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--ink-86);
+}
+
+.tags {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-2);
-  margin-top: auto;
-  padding-top: var(--space-4);
-}
-
-.projectTag {
-  font-size: var(--text-sm);
-  padding: var(--space-1) var(--space-3);
-  background: rgba(255, 159, 67, 0.1);
-  color: var(--accent-primary);
-  border-radius: var(--radius-full);
-  border: 1px solid rgba(255, 159, 67, 0.2);
-}
-
-.projectLinks {
-  display: flex;
-  align-items: center;
-  gap: var(--space-4);
-  margin-top: var(--space-4);
-}
-
-.projectLink {
-  font-size: var(--text-sm);
-  color: var(--accent-primary);
-  text-decoration: none;
-  font-weight: var(--font-medium);
-  transition: color var(--duration-fast) var(--ease-out);
-}
-
-.projectLink {
-  display: inline-flex;
-  align-items: center;
   gap: 6px;
 }
 
-.projectLink:hover {
-  color: var(--accent-hover);
-  text-decoration: underline;
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 24px;
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px dashed var(--ink-55);
+}
+
+/* Underlined mono link, sized to sit next to the small button */
+.sourceLink {
+  min-height: 36px;
+  font-size: 0.8125rem;
 }
 
 .storeBadge {
   display: inline-flex;
-  line-height: 0;
-  transition: transform var(--duration-fast) var(--ease-out), opacity var(--duration-fast) var(--ease-out);
+  align-items: center;
+  height: 40px;
 }
 
 .storeBadge img {
-  height: 60px;
+  height: 100%;
   width: auto;
-  display: block;
 }
 
-.storeBadge:hover {
-  transform: translateY(-1px);
-  opacity: 0.9;
-}
-
-/* Language label styles */
-.languageLabel {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: var(--text-sm);
-  color: var(--text-tertiary);
-}
-
-.languageDot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  display: inline-block;
-  flex-shrink: 0;
-}
-
-.languageName {
-  font-size: var(--text-sm);
-  white-space: nowrap;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .macWindow {
-    max-width: 100%;
+@media (max-width: 640px) {
+  .window {
+    box-shadow: 6px 8px 0 var(--yellow);
   }
 
-  .projectCard :global(.project-image) {
-    height: 200px;
-  }
-}
-
-@media (max-width: 480px) {
-  .projectCard :global(.project-image) {
-    height: 180px;
-  }
-}
-
-/* Only enable tilt transitions on hover-capable devices */
-@media (hover: hover) {
-  .projectCard {
-    transition: transform 0.5s ease-out;
-  }
-
-  .projectCard.tilting {
-    transition: transform 0.15s ease-out;
-  }
-}
-
-/* Touch devices: simple lift on active */
-@media (hover: none) {
-  .projectCard:active {
-    transform: translateY(-4px);
-    transition: transform 0.3s ease-out;
+  .screen img {
+    max-height: 220px;
   }
 }

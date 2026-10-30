@@ -3,19 +3,24 @@ import "./App.css";
 import { Navigation } from "./components/ui/Navigation";
 import { Hero } from "./components/sections/Hero";
 import { About } from "./components/sections/About";
+import { Tape } from "./components/ui/Tape";
+import { STACK } from "./data/stack";
 import { Projects } from "./components/sections/Projects";
 import { Certifications } from "./components/sections/Certifications";
+import { Contact } from "./components/sections/Contact";
 import { WorkExperience } from "./components/sections/WorkExperience";
+
+const SECTION_IDS = ["home", "about", "experience", "projects", "certifications", "contact"];
 
 function App() {
   const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["home", "about", "experience", "projects", "certifications"];
-      const scrollPosition = window.scrollY + 100;
+      const scrollPosition = window.scrollY + window.innerHeight * 0.35;
 
-      for (const section of sections) {
+      // Later sections win when they overlap an earlier one (About slides over the hero)
+      for (const section of [...SECTION_IDS].reverse()) {
         const element = document.getElementById(section);
         if (element) {
           const { offsetTop, offsetHeight } = element;
@@ -25,22 +30,10 @@ function App() {
           }
         }
       }
-
-      // Handle scroll indicator fade
-      const scrollIndicator = document.querySelector('.scroll-indicator');
-      if (scrollIndicator) {
-        const heroHeight = window.innerHeight;
-        const fadeThreshold = heroHeight * 0.8; // Start fading at 80% of hero height
-        
-        if (window.scrollY > fadeThreshold) {
-          scrollIndicator.classList.add('fade-out');
-        } else {
-          scrollIndicator.classList.remove('fade-out');
-        }
-      }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -49,9 +42,11 @@ function App() {
     if (!element) return;
 
     // If scrolling from hero to about, scroll through the full hero animation
-    const hero = document.getElementById('home');
-    const navHeight = document.querySelector('nav')?.offsetHeight ?? 0;
-    if (sectionId === 'about' && hero && window.scrollY < hero.offsetHeight) {
+    const hero = document.getElementById("home");
+    const navHeight = document.querySelector("header")?.offsetHeight ?? 0;
+    if (sectionId === "home") {
+      smoothScrollTo(0, 800);
+    } else if (sectionId === "about" && hero && window.scrollY < hero.offsetHeight) {
       const target = hero.offsetHeight - window.innerHeight;
       smoothScrollTo(target, 1500);
     } else {
@@ -82,10 +77,14 @@ function App() {
       <main>
         <Hero onScrollToSection={scrollToSection} />
         <About />
+        <Tape items={STACK} />
         <WorkExperience />
         <Projects />
         <Certifications />
+        <Contact />
       </main>
+
+      <div className="grain" aria-hidden="true" />
     </>
   );
 }

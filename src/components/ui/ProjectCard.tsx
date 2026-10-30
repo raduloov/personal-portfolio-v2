@@ -1,28 +1,13 @@
 import { useRef, useState } from 'react'
-import { Image } from './Image'
-import { getLanguageColor } from '../../utils/languageColors'
 import googlePlayBadge from '../../assets/google-play-badge.png'
 import styles from './ProjectCard.module.css'
 
-const languageExtensions: Record<string, string> = {
-  TypeScript: '.tsx',
-  JavaScript: '.js',
-  Swift: '.swift',
-  Kotlin: '.kt',
-  'C++': '.cpp',
-}
-
-function toFilename(title: string, language?: string): string {
-  const kebab = title
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/(^-|-$)/g, '')
-  const ext = language ? (languageExtensions[language] ?? '') : ''
-  return `${kebab}${ext}`
-}
+const MAX_TILT = 8
 
 interface ProjectCardProps {
+  index: number
   title: string
+  windowName: string
   description: string
   image?: string
   tags: string[]
@@ -33,94 +18,95 @@ interface ProjectCardProps {
   language?: string
 }
 
-const MAX_TILT = 8
+/** A project rendered as a paper macOS window with a hard offset shadow. */
+export function ProjectCard({
+  index,
+  title,
+  windowName,
+  description,
+  image,
+  tags,
+  demoUrl,
+  gitUrl,
+  playStoreUrl,
+  date,
+  language,
+}: ProjectCardProps) {
+  const number = String(index + 1).padStart(2, '0')
+  const hasLinks = Boolean(demoUrl || gitUrl || playStoreUrl)
 
-export function ProjectCard({ title, description, image, tags, demoUrl, gitUrl, playStoreUrl, date, language }: ProjectCardProps) {
+  // 3D tilt that follows the pointer, as on the original cards
   const wrapperRef = useRef<HTMLDivElement>(null)
   const [transform, setTransform] = useState('')
-  const [isHovering, setIsHovering] = useState(false)
+  const [isTilting, setIsTilting] = useState(false)
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const el = wrapperRef.current
     if (!el) return
     const rect = el.getBoundingClientRect()
-    const x = e.clientX - rect.left
-    const y = e.clientY - rect.top
-    const centerX = rect.width / 2
-    const centerY = rect.height / 2
-    const rotateY = ((x - centerX) / centerX) * MAX_TILT
-    const rotateX = -((y - centerY) / centerY) * MAX_TILT
-    setTransform(`rotateX(${rotateX}deg) rotateY(${rotateY}deg)`)
-  }
-
-  const handleMouseEnter = () => {
-    setIsHovering(true)
+    const x = (e.clientX - rect.left) / rect.width - 0.5
+    const y = (e.clientY - rect.top) / rect.height - 0.5
+    // the corner under the pointer comes toward the viewer
+    setTransform(`rotateX(${(y * 2 * MAX_TILT).toFixed(2)}deg) rotateY(${(-x * 2 * MAX_TILT).toFixed(2)}deg) scale(1.03)`)
   }
 
   const handleMouseLeave = () => {
-    setIsHovering(false)
-    setTransform('rotateX(0deg) rotateY(0deg)')
+    setIsTilting(false)
+    setTransform('rotateX(0deg) rotateY(0deg) scale(1)')
   }
-
-  const cardClasses = `${styles.projectCard}${isHovering ? ` ${styles.tilting}` : ''}`
 
   return (
     <div
       ref={wrapperRef}
-      className={styles.macWindow}
+      className={styles.tilt}
       onMouseMove={handleMouseMove}
-      onMouseEnter={handleMouseEnter}
+      onMouseEnter={() => setIsTilting(true)}
       onMouseLeave={handleMouseLeave}
     >
-      <div className={cardClasses} style={{ transform }}>
+      <article className={`${styles.window} ${isTilting ? styles.tilting : ''}`} style={{ transform }}>
         <div className={styles.titleBar}>
-          <div className={styles.trafficLights}>
-            <span className={`${styles.dot} ${styles.dotRed}`} />
-            <span className={`${styles.dot} ${styles.dotYellow}`} />
-            <span className={`${styles.dot} ${styles.dotGreen}`} />
-          </div>
-          <span className={styles.windowTitle}>{toFilename(title, language)}</span>
-          <div className={styles.titleBarSpacer} />
+          <span className={styles.lights} aria-hidden="true">
+            <span className={`${styles.light} ${styles.lightRed}`} />
+            <span className={`${styles.light} ${styles.lightYellow}`} />
+            <span className={`${styles.light} ${styles.lightCream}`} />
+          </span>
+          <span className={styles.windowName}>{windowName}</span>
+          <span className={styles.number}>№ {number}</span>
         </div>
-        <Image
-          src={image}
-          alt={title}
-          placeholder="[Project Image]"
-          className="project-image"
-          cover
-        />
-        <div className={styles.projectContent}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.5rem' }}>
-            <h3 style={{ margin: 0 }}>{title}</h3>
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '0.25rem' }}>
-              {language && (
-                <div className={styles.languageLabel}>
-                  <span
-                    className={styles.languageDot}
-                    style={{ backgroundColor: getLanguageColor(language) }}
-                  />
-                  <span className={styles.languageName}>{language}</span>
-                </div>
-              )}
-              {date && <small style={{ color: 'var(--text-tertiary)' }}>{date}</small>}
-            </div>
+
+        <div className={styles.screen}>
+          {image ? (
+            <img src={image} alt={`${title} screenshot`} loading="lazy" />
+          ) : (
+            <div className={styles.placeholder}>No screenshot yet</div>
+          )}
+          {language && <span className={styles.tag}>{language}</span>}
+        </div>
+
+        <div className={styles.body}>
+          <div className={styles.head}>
+            <h3 className={`display ${styles.title}`}>{title}</h3>
+            {date && <span className={styles.date}>{date}</span>}
           </div>
-          <p>{description}</p>
-          <div className={styles.projectTags}>
-            {tags.map((tag, index) => (
-              <span key={index} className={styles.projectTag}>{tag}</span>
+
+          <p className={styles.desc}>{description}</p>
+
+          <div className={styles.tags}>
+            {tags.map((tag) => (
+              <span key={tag} className="chip">{tag}</span>
             ))}
           </div>
-          {(demoUrl || gitUrl || playStoreUrl) && (
-            <div className={styles.projectLinks}>
+
+          {hasLinks && (
+            <div className={styles.links}>
               {demoUrl && (
-                <a href={demoUrl} target="_blank" rel="noopener noreferrer" className={styles.projectLink}>
-                  Live Demo →
+                <a href={demoUrl} target="_blank" rel="noopener noreferrer" className="btn btn--sm">
+                  Check out
                 </a>
               )}
               {gitUrl && (
-                <a href={gitUrl} target="_blank" rel="noopener noreferrer" className={styles.projectLink}>
-                  View Code →
+                <a href={gitUrl} target="_blank" rel="noopener noreferrer" className={`link-arrow ${styles.sourceLink}`}>
+                  <span>Source</span>
                 </a>
               )}
               {playStoreUrl && (
@@ -131,7 +117,7 @@ export function ProjectCard({ title, description, image, tags, demoUrl, gitUrl, 
             </div>
           )}
         </div>
-      </div>
+      </article>
     </div>
   )
 }

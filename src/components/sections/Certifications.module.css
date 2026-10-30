@@ -1,108 +1,143 @@
-/* Certifications Section */
-
-.sectionTitle {
-  font-size: var(--text-3xl);
-  text-align: center;
-  margin-bottom: var(--space-12);
-  font-weight: var(--font-thin);
+.certifications {
+  position: relative;
 }
 
-.certificationsGrid {
+.body {
+  padding-block: clamp(80px, 10vw, 150px) clamp(72px, 9vw, 130px);
+  overflow: clip;
+}
+
+.grid {
+  list-style: none;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: var(--space-6);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 48px 36px;
 }
 
-.certificationCard {
-  text-align: center;
-  padding: var(--space-8);
-  transition: all var(--duration-slow) var(--ease-out);
+/* Each slot carries a slight tilt and vertical offset, straightened on hover */
+.slot {
+  --rot: 0deg;
+  --y: 0px;
+  position: relative;
+  transform: translateY(var(--y)) rotate(var(--rot));
+  transition: transform 0.5s var(--ease-spring);
 }
 
-.certificationCard:hover {
-  transform: translateY(-8px);
-  box-shadow: var(--shadow-xl), var(--shadow-glow-sm);
+.slot:nth-child(6n + 1) { --rot: -1.5deg; --y: 8px; }
+.slot:nth-child(6n + 2) { --rot: 2deg; --y: 24px; }
+.slot:nth-child(6n + 3) { --rot: -1deg; --y: -6px; }
+.slot:nth-child(6n + 4) { --rot: 1.6deg; --y: 14px; }
+.slot:nth-child(6n + 5) { --rot: -2deg; --y: 0; }
+.slot:nth-child(6n + 6) { --rot: 1deg; --y: 20px; }
+
+.slot:hover {
+  transform: translateY(calc(var(--y) - 6px)) rotate(0deg);
+  z-index: 2;
 }
 
-.certificationIcon {
-  margin-bottom: var(--space-4);
+/* Interactive wrapper; the paper itself is drawn by PaperSheet inside */
+.card {
+  display: block;
+  height: 100%;
+  color: var(--ink);
+  cursor: pointer;
 }
 
-.certificationTitle {
-  font-size: var(--text-xl);
-  font-weight: var(--font-medium);
-  margin-bottom: var(--space-2);
-  color: var(--text-primary);
-}
-
-.certificationIssuer {
-  font-size: var(--text-base);
-  color: var(--text-secondary);
-  font-weight: var(--font-light);
-  margin-bottom: var(--space-1);
-}
-
-.certificationDate {
-  font-size: var(--text-sm);
-  color: var(--text-tertiary);
-  margin-bottom: var(--space-4);
-}
-
-.certificationSkills {
+/* The sheet's content area stacks the card's parts */
+.card > div > div {
   display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2);
-  justify-content: center;
-  margin-bottom: var(--space-4);
+  flex-direction: column;
+  gap: 14px;
 }
 
-.skillTag {
-  font-size: var(--text-xs);
-  padding: var(--space-1) var(--space-2);
-  background: rgba(255, 159, 67, 0.1);
-  color: var(--accent-primary);
-  border-radius: var(--radius-md);
-  border: 1px solid rgba(255, 159, 67, 0.2);
+.head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+  padding-bottom: 12px;
+  border-bottom: 1.5px solid var(--ink);
 }
 
-.certificationLink {
-  font-size: var(--text-sm);
-  color: var(--accent-primary);
-  text-decoration: none;
-  font-weight: var(--font-medium);
-  transition: all var(--duration-fast) var(--ease-out);
+.no,
+.date {
+  font: 500 0.75rem/1.3 var(--font-mono);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.date {
+  color: var(--ink-70);
+}
+
+.stamp {
+  position: absolute;
+  top: 18px;
+  right: -30px;
+  z-index: 1;
   display: inline-flex;
   align-items: center;
-  gap: var(--space-1);
+  gap: 0.3em;
+  transform: rotate(-8deg);
 }
 
-.certificationLink:hover {
-  color: var(--accent-hover);
-  transform: translateX(4px);
+.title {
+  margin-top: 22px;
+  font-size: clamp(1.35rem, 1.6vw, 1.6rem);
+  line-height: 1;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  color: var(--ink);
 }
 
-/* Make certification cards clickable */
-.certificationCard.clickable {
-  cursor: pointer;
-  transition: all 0.3s ease;
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
 }
 
-.certificationCard.clickable:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 24px rgba(255, 159, 67, 0.2);
+.foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: auto;
+  padding-top: 10px;
 }
 
-/* Certification Modal Specific Styles */
-.certificationImageOnly {
+.src {
+  font: 500 0.6875rem/1 var(--font-mono);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-70);
+}
+
+.link {
+  min-height: 32px;
+  font-size: 0.75rem;
+  color: var(--ink);
+}
+
+.certImage {
+  display: block;
   width: 100%;
   height: auto;
-  display: block;
-  border-radius: 8px;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .certificationsGrid {
-    grid-template-columns: 1fr;
+@media (max-width: 1000px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 36px;
+  }
+
+  .slot {
+    --y: 0px;
   }
 }

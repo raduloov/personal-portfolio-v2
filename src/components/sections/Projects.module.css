@@ -1,20 +1,28 @@
-/* Projects Section */
-.projectsSection {
-  background: var(--secondary-bg);
+.projects {
+  position: relative;
 }
 
-.projectsGrid {
+.body {
+  padding-block: clamp(72px, 9vw, 130px) clamp(96px, 11vw, 160px);
+  overflow: clip;
+}
+
+.grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(500px, 100%), 1fr));
-  gap: var(--space-8);
-  margin-top: var(--space-8);
-  justify-items: stretch;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(28px, 3.2vw, 48px) clamp(22px, 2.6vw, 40px);
   align-items: start;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .projectsGrid {
+@media (max-width: 1100px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .grid {
     grid-template-columns: minmax(0, 1fr);
+    gap: 40px;
   }
 }

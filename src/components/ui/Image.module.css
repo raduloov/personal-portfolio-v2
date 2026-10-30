@@ -2,7 +2,7 @@
 .imageContainer {
   position: relative;
   overflow: hidden;
-  background: var(--surface-bg);
+  background: var(--ink-raised);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -16,7 +16,8 @@
 }
 
 .imagePlaceholder {
-  color: var(--text-tertiary);
-  font-size: var(--text-sm);
-  font-weight: var(--font-light);
+  color: var(--cream-40);
+  font: 500 0.75rem/1 var(--font-mono);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
 }

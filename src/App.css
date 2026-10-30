@@ -1,25 +1,14 @@
-/* Global Container Styles */
-.container {
-  max-width: var(--breakpoint-xl);
-  margin: 0 auto;
-  padding: 0 var(--space-6);
-}
-
-/* Global Section Styles */
+/* Global section rhythm */
 .section {
-  padding: var(--space-20) 0;
   position: relative;
-  z-index: 2;
+  z-index: var(--z-content);
 }
 
-.section-title {
-  font-size: var(--text-3xl);
-  text-align: center;
-  margin-bottom: var(--space-12);
-  font-weight: var(--font-thin);
+.section-body {
+  padding-block: clamp(64px, 9vw, 140px);
 }
 
-/* Global Animations */
+/* Legacy keyframes kept for modules that still reference them */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -28,14 +17,5 @@
   to {
     opacity: 1;
     transform: translateY(0);
-  }
-}
-
-@keyframes glow {
-  0%, 100% {
-    box-shadow: var(--shadow-glow-sm);
-  }
-  50% {
-    box-shadow: var(--shadow-glow-lg);
   }
 }

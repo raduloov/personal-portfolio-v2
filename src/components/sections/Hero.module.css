@@ -1,29 +1,29 @@
-/* Hero Section */
+/* Hero: 300vh scroll track with sticky stacked layers */
 .hero {
   height: 300vh;
   position: relative;
+  background: var(--ink);
 }
+
+/* ---------- Loader ---------- */
 
 .loader {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
+  inset: 0;
   height: 100vh;
   height: 100dvh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: var(--primary-bg);
-  z-index: 100;
-  gap: var(--space-16);
+  gap: 56px;
+  z-index: var(--z-overlay);
 }
 
 .loaderText {
-  font-size: var(--text-2xl);
-  font-weight: var(--font-light);
-  letter-spacing: 0.5px;
+  font: 700 2rem/1 var(--font-display);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
 .cookingScene {
@@ -31,7 +31,7 @@
   width: 200px;
   height: 180px;
   transform: scale(2);
-  margin-bottom: var(--space-16);
+  margin-bottom: 48px;
 }
 
 /* Egg */
@@ -45,15 +45,15 @@
 }
 
 .eggWhite {
-  width: 70px;
-  height: 62px;
-  background: rgba(255, 255, 255, 0.92);
-  border-radius: 50% 50% 45% 55% / 60% 55% 45% 40%;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 12px rgba(255, 255, 255, 0.12);
-  position: relative;
+  width: 70px;
+  height: 62px;
+  background: var(--paper-white);
+  border-radius: 50% 50% 45% 55% / 60% 55% 45% 40%;
+  box-shadow: 0 2px 12px rgba(255, 248, 236, 0.12);
 }
 
 .eggWhite::after {
@@ -63,7 +63,7 @@
   left: 10px;
   width: 12px;
   height: 8px;
-  background: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.5);
   border-radius: 50%;
   transform: rotate(-20deg);
 }
@@ -71,9 +71,9 @@
 .eggYolk {
   width: 30px;
   height: 30px;
-  background: radial-gradient(circle at 40% 35%, #ffb347, #FF9F43, #e8872a);
+  background: radial-gradient(circle at 40% 35%, #ffd34d, var(--yellow), #d99c05);
   border-radius: 50%;
-  box-shadow: inset -3px -3px 6px rgba(0, 0, 0, 0.12), 0 0 12px rgba(255, 159, 67, 0.25);
+  box-shadow: inset -3px -3px 6px rgba(0, 0, 0, 0.12);
 }
 
 .eggShadow {
@@ -82,7 +82,7 @@
   left: 50%;
   width: 55px;
   height: 10px;
-  background: rgba(0, 0, 0, 0.25);
+  background: rgba(0, 0, 0, 0.35);
   border-radius: 50%;
   transform: translateX(-55%);
   animation: shadowAnim 2.4s ease-in-out infinite;
@@ -103,13 +103,13 @@
 }
 
 @keyframes shadowAnim {
-  0%, 15% { transform: translateX(-55%) scale(1); opacity: 0.25; }
-  20% { transform: translateX(-55%) scale(1.05); opacity: 0.3; }
-  38% { transform: translateX(-55%) scale(0.5); opacity: 0.1; }
-  50% { transform: translateX(-55%) scale(0.3); opacity: 0.05; }
-  62% { transform: translateX(-55%) scale(0.5); opacity: 0.1; }
-  82% { transform: translateX(-55%) scale(1.05); opacity: 0.3; }
-  92%, 100% { transform: translateX(-55%) scale(1); opacity: 0.25; }
+  0%, 15% { transform: translateX(-55%) scale(1); opacity: 0.35; }
+  20% { transform: translateX(-55%) scale(1.05); opacity: 0.4; }
+  38% { transform: translateX(-55%) scale(0.5); opacity: 0.15; }
+  50% { transform: translateX(-55%) scale(0.3); opacity: 0.08; }
+  62% { transform: translateX(-55%) scale(0.5); opacity: 0.15; }
+  82% { transform: translateX(-55%) scale(1.05); opacity: 0.4; }
+  92%, 100% { transform: translateX(-55%) scale(1); opacity: 0.35; }
 }
 
 /* Pan */
@@ -122,14 +122,14 @@
 }
 
 .panBase {
+  position: relative;
   width: 120px;
   height: 24px;
-  background: linear-gradient(to bottom, #555, #333);
+  background: linear-gradient(to bottom, #3a3a36, var(--ink));
   border-radius: 0 0 50% 50%;
-  border: 2px solid #666;
+  border: 2px solid #4a4944;
   border-top: none;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), inset 0 -2px 6px rgba(0, 0, 0, 0.3);
-  position: relative;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5), inset 0 -2px 6px rgba(0, 0, 0, 0.3);
 }
 
 .panInner {
@@ -138,7 +138,7 @@
   left: 8px;
   right: 8px;
   height: 10px;
-  background: linear-gradient(to bottom, #444, #2a2a2a);
+  background: linear-gradient(to bottom, #2e2d2a, #1f1e1b);
   border-radius: 0 0 50% 50%;
 }
 
@@ -148,7 +148,7 @@
   top: 4px;
   width: 56px;
   height: 9px;
-  background: linear-gradient(to right, #666, #888, #777);
+  background: linear-gradient(to right, #4a4944, #6a6862, #5a5852);
   border-radius: 0 6px 6px 0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
@@ -161,7 +161,7 @@
   width: 14px;
   height: 15px;
   border-radius: 6px;
-  background: #999;
+  background: var(--yellow);
 }
 
 @keyframes panMove {
@@ -174,6 +174,8 @@
   92%, 100% { transform: translateX(-55%) rotate(0deg) translateY(0); }
 }
 
+/* ---------- Footage ---------- */
+
 .videoContainer {
   position: sticky;
   top: 0;
@@ -181,6 +183,7 @@
   height: 100vh;
   height: 100dvh;
   overflow: hidden;
+  background: var(--ink);
 }
 
 .heroCanvas {
@@ -190,7 +193,8 @@
   display: block;
 }
 
-.heroOverlay {
+/* Darkening gradients so the copy reads over the footage */
+.vignette {
   position: sticky;
   top: 0;
   width: 100%;
@@ -198,254 +202,190 @@
   height: 100dvh;
   margin-top: -100vh;
   margin-top: -100dvh;
-  background: rgba(0, 0, 0, 0.4);
   pointer-events: none;
   z-index: 1;
+  overflow: hidden;
+  background:
+    linear-gradient(90deg, rgba(26, 26, 24, 0.82) 0%, rgba(26, 26, 24, 0.55) 40%, rgba(26, 26, 24, 0.25) 100%),
+    linear-gradient(180deg, rgba(26, 26, 24, 0.75) 0%, rgba(26, 26, 24, 0.15) 30%, rgba(26, 26, 24, 0.35) 70%, var(--ink) 100%);
 }
 
-.particles {
-  position: sticky;
-  top: 0;
-  width: 100%;
-  height: 100vh;
-  height: 100dvh;
-  margin-top: -100vh;
-  margin-top: -100dvh;
-  z-index: 1;
-}
-
-.heroContent {
+.content {
   position: sticky;
   top: 0;
   height: 100vh;
   height: 100dvh;
   margin-top: -100vh;
   margin-top: -100dvh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
   z-index: 2;
   will-change: opacity, transform;
-  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.5) 0%, transparent 70%);
-}
-
-.heroSubtitle {
-  font-size: var(--text-lg);
-  color: var(--text-secondary);
-  font-weight: var(--font-light);
-  margin-bottom: var(--space-4);
-  opacity: 0;
-  animation: fadeIn var(--duration-slow) var(--ease-out) 0.2s forwards;
-}
-
-.heroTitle {
-  font-size: clamp(3rem, 8vw, 5rem);
-  font-weight: var(--font-thin);
-  margin-bottom: var(--space-6);
-  line-height: 1.1;
-  opacity: 0;
-  animation: fadeIn var(--duration-slow) var(--ease-out) 0.4s forwards;
-}
-
-.heroTitleGradient {
-  background: var(--gradient-primary);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.heroDescription {
-  font-size: var(--text-xl);
-  color: var(--text-secondary);
-  font-weight: var(--font-light);
-  margin-bottom: var(--space-10);
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-  line-height: 1.6;
-  opacity: 0;
-  animation: fadeIn var(--duration-slow) var(--ease-out) 0.6s forwards;
-}
-
-.heroCta {
   display: flex;
-  gap: var(--space-4);
-  justify-content: center;
-  opacity: 0;
-  animation: fadeIn var(--duration-slow) var(--ease-out) 0.8s forwards;
+  align-items: stretch;
 }
 
-/* Scroll Indicator */
-.scrollIndicator {
-  position: fixed;
-  bottom: calc(var(--space-8) + env(safe-area-inset-bottom, 0px));
-  left: 0;
-  right: 0;
-  margin: 0 auto;
-  width: fit-content;
-  cursor: pointer;
-  z-index: 10;
-  opacity: 0;
-  animation: fadeIn var(--duration-slow) var(--ease-out) 1.2s forwards;
-  transition: all var(--duration-normal) var(--ease-out);
-  user-select: none;
-  border-radius: var(--radius-lg);
-  padding: var(--space-3);
-  background: transparent;
-  border: none;
-  outline: none;
-}
-
-.scrollIndicator:hover,
-.scrollIndicator:focus {
-  transform: translateY(-4px);
-}
-
-.scrollIndicator:focus {
-  outline: none;
-}
-
-.scrollIndicator:active {
-  transform: translateY(-2px);
-}
-
-.scrollIndicatorContent {
+.layout {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: var(--space-2);
+  justify-content: flex-end;
+  gap: clamp(20px, 3vh, 36px);
+  padding-top: calc(var(--header-h) + 24px);
+  padding-bottom: clamp(20px, 4vh, 40px);
 }
 
-.scrollText {
-  font-size: var(--text-sm);
-  color: var(--text-secondary);
-  font-weight: var(--font-light);
-  letter-spacing: 0.5px;
+.intro {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(12px, 1.6vw, 20px);
+}
+
+.eyebrow {
+  letter-spacing: 0.28em;
+  opacity: 0;
+  animation: rise 0.7s var(--ease-out) 0.15s forwards;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px 28px;
+  opacity: 0;
+  animation: rise 0.7s var(--ease-out) 0.5s forwards;
+}
+
+.workLink {
+  color: var(--cream);
+}
+
+.socials {
+  display: flex;
+  gap: 12px;
+}
+
+/* Round yellow buttons with the hard red shadow, same feel as .btn */
+.social {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border: 1.5px solid var(--ink);
+  border-radius: 999px;
+  background: var(--yellow);
+  color: var(--ink);
+  box-shadow: 3px 3px 0 var(--red);
+  transition: transform var(--dur-press) var(--ease-out), box-shadow var(--dur-press) var(--ease-out);
+}
+
+.social svg {
+  width: 22px;
+  height: 22px;
+  fill: currentColor;
+}
+
+.social:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0 var(--red);
+}
+
+.social:active {
+  transform: translate(3px, 3px);
+  box-shadow: 0 0 0 var(--red);
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  font-size: clamp(2.9rem, 9.2vw, 9rem);
+  line-height: 0.86;
+  color: var(--cream);
+  opacity: 0;
+  animation: rise 0.8s var(--ease-out) 0.35s forwards;
+}
+
+.titleLine {
+  display: block;
+}
+
+.titleAccent {
+  color: var(--yellow);
+  text-shadow: 0.028em 0.018em 0 var(--red);
+}
+
+.credits {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  column-gap: 0.9em;
+  row-gap: 6px;
+  padding-top: 18px;
+  border-top: 1px dashed var(--cream-15);
+  font: 500 0.75rem/1.5 var(--font-mono);
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  transition: color var(--duration-normal) var(--ease-out);
-  white-space: nowrap;
+  color: var(--cream-70);
+  text-align: center;
+  opacity: 0;
+  animation: rise 0.8s var(--ease-out) 0.6s forwards;
 }
 
-.scrollIndicator:hover .scrollText,
-.scrollIndicator:focus .scrollText {
-  color: var(--accent-primary);
+.creditsRole {
+  font-size: 0.6em;
+  letter-spacing: 0.2em;
+  color: var(--yellow);
+  margin-right: 0.3em;
 }
 
-.scrollArrows {
-  position: relative;
-  width: 20px;
-  height: 20px;
+/* Scroll cue */
+.cue {
+  position: fixed;
+  right: 28px;
+  bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+  z-index: 10;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-}
-
-.scrollArrow {
-  position: absolute;
-  color: var(--text-secondary);
-  transition: all var(--duration-normal) var(--ease-out);
-  animation: scrollBounce 2s ease-in-out infinite;
-  opacity: 0.7;
-  width: 20px;
-  height: 12px;
-}
-
-.scrollArrow:first-child {
-  top: 0;
-}
-
-.scrollArrowDelayed {
-  animation-delay: 0.3s;
-  opacity: 0.4;
-  top: 8px;
-}
-
-.scrollIndicator:hover .scrollArrow,
-.scrollIndicator:focus .scrollArrow {
-  color: var(--accent-primary);
-  opacity: 1;
-}
-
-.scrollIndicator:hover .scrollArrowDelayed,
-.scrollIndicator:focus .scrollArrowDelayed {
-  opacity: 0.8;
-}
-
-/* Scroll indicator fade on scroll */
-.scrollIndicator.fadeOut {
+  gap: 8px;
+  padding: 10px;
+  background: transparent;
+  border: 0;
+  color: var(--cream-70);
   opacity: 0;
-  transform: translateY(20px);
+  animation: rise 0.6s var(--ease-out) 1.1s forwards;
+  transition: color var(--dur-ui);
 }
 
-/* Social Icons */
-.socialIcons {
-  display: flex;
-  gap: var(--space-3);
-  align-items: center;
-  justify-content: center;
+.cue:hover {
+  color: var(--yellow);
 }
 
-.socialIconLink {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 56px;
-  height: 56px;
-  border-radius: var(--radius-lg);
-  background: rgba(255, 255, 255, 0.02);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: var(--text-secondary);
-  transition: all var(--duration-normal) var(--ease-out);
-  text-decoration: none;
-  position: relative;
-  overflow: hidden;
+.cueText {
+  writing-mode: vertical-rl;
+  font: 500 0.6875rem/1 var(--font-mono);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
 }
 
-.socialIconLink::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: var(--gradient-primary);
-  opacity: 0;
-  transition: opacity var(--duration-normal) var(--ease-out);
+.cueArrow {
+  width: 14px;
+  height: 9px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  animation: cueBounce 2s ease-in-out infinite;
 }
 
-.socialIconLink:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-lg), var(--shadow-glow-sm);
-  border-color: var(--accent-primary);
-  color: var(--text-primary);
+@keyframes cueBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(5px); }
 }
 
-.socialIconLink:hover::before {
-  opacity: 0.1;
-}
-
-.socialIcon {
-  width: 28px;
-  height: 28px;
-  transition: all var(--duration-normal) var(--ease-out);
-  position: relative;
-  z-index: 1;
-}
-
-.socialIconLink:hover .socialIcon {
-  transform: scale(1.1);
-  color: var(--accent-primary);
-}
-
-/* Animations */
-@keyframes fadeIn {
+@keyframes rise {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(18px);
   }
   to {
     opacity: 1;
@@ -453,47 +393,41 @@
   }
 }
 
-@keyframes scrollBounce {
-  0%, 100% {
-    transform: translateY(0);
-    opacity: 0.7;
+/* ---------- Responsive ---------- */
+
+@media (max-width: 768px) {
+  .cookingScene {
+    transform: scale(1.2);
+    margin-bottom: 24px;
   }
-  50% {
-    transform: translateY(6px);
-    opacity: 1;
+
+  .loaderText {
+    font-size: 1.5rem;
+  }
+
+  .layout {
+    gap: 18px;
+  }
+
+  .title {
+    font-size: clamp(3.2rem, 16vw, 5.4rem);
+  }
+
+  .credits {
+    display: none;
+  }
+
+  .cue {
+    right: 12px;
+  }
+
+  .workLink {
+    display: none;
   }
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .cookingScene {
-    transform: scale(1.3);
-    margin-bottom: var(--space-8);
-  }
-
-  .heroTitle {
-    font-weight: var(--font-light);
-  }
-
-  .heroCta {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .scrollIndicator {
-    bottom: calc(var(--space-8) + env(safe-area-inset-bottom, 20px));
-  }
-
-  .scrollText {
-    font-size: var(--text-xs);
-  }
-
-  .scrollArrows {
-    height: 14px;
-  }
-
-  .scrollArrow {
-    width: 16px;
-    height: 10px;
+@media (max-height: 640px) {
+  .credits {
+    display: none;
   }
 }

@@ -1,46 +1,62 @@
-/* Button Styles */
+/* Hard-shadow pill buttons (mirrors the global .btn primitives) */
 .btnPrimary {
-  background: var(--gradient-primary);
-  color: var(--text-inverse);
-  padding: var(--space-3) var(--space-6);
-  border-radius: var(--radius-lg);
-  font-weight: var(--font-medium);
-  font-size: var(--text-base);
-  border: none;
-  cursor: pointer;
-  transition: all var(--duration-normal) var(--ease-out);
-  box-shadow: var(--shadow-md);
+  --shadow: var(--red);
   display: inline-flex;
   align-items: center;
-  gap: var(--space-2);
+  justify-content: center;
+  gap: 0.55em;
+  min-height: 48px;
+  padding: 0.85em 1.4em 0.8em;
+  border: 0;
+  border-radius: 999px;
+  background: var(--yellow);
+  color: var(--ink);
+  font: 900 1rem/1 var(--font-heavy);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  box-shadow: 3px 3px 0 var(--shadow);
+  transition: transform var(--dur-press) var(--ease-out), box-shadow var(--dur-press) var(--ease-out);
 }
 
 .btnPrimary:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-lg), var(--shadow-glow-sm);
+  box-shadow: 5px 5px 0 var(--shadow);
+  transform: translate(-2px, -2px);
 }
 
 .btnPrimary:active {
-  transform: translateY(0);
+  box-shadow: 0 0 0 var(--shadow);
+  transform: translate(3px, 3px);
 }
 
 .btnSecondary {
-  background: transparent;
-  color: var(--text-primary);
-  padding: var(--space-3) var(--space-6);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: var(--radius-lg);
-  font-weight: var(--font-light);
-  font-size: var(--text-base);
-  backdrop-filter: blur(10px);
-  transition: all var(--duration-normal) var(--ease-out);
+  --shadow: rgba(26, 26, 24, 0.3);
   display: inline-flex;
   align-items: center;
-  gap: var(--space-2);
+  justify-content: center;
+  gap: 0.55em;
+  min-height: 48px;
+  padding: 0.85em 1.4em 0.8em;
+  border: 0;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--cream);
+  font: 900 1rem/1 var(--font-heavy);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  box-shadow: 3px 3px 0 var(--shadow);
+  transition: transform var(--dur-press) var(--ease-out), box-shadow var(--dur-press) var(--ease-out), background-color var(--dur-ui), color var(--dur-ui);
 }
 
 .btnSecondary:hover {
-  border-color: var(--accent-primary);
-  color: var(--accent-primary);
-  background: rgba(255, 159, 67, 0.1);
+  background: var(--yellow);
+  color: var(--ink);
+  box-shadow: 5px 5px 0 var(--shadow);
+  transform: translate(-2px, -2px);
+}
+
+.btnSecondary:active {
+  box-shadow: 0 0 0 var(--shadow);
+  transform: translate(3px, 3px);
 }

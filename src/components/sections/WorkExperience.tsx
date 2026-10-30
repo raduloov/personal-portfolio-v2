@@ -1,36 +1,46 @@
 import { workExperienceData } from '../../data/workExperienceData'
+import { SectionHead } from '../ui/SectionHead'
+import { PaperSheet } from '../ui/PaperSheet'
 import styles from './WorkExperience.module.css'
 
 export function WorkExperience() {
   return (
     <section id="experience" className={`section ${styles.experience}`}>
-      <div className="container">
-        <h2 style={{ textAlign: 'center', marginBottom: 'var(--space-8)' }}>Work Experience</h2>
-        <div className={styles.experienceTimeline}>
-          {workExperienceData.map((job, index) => (
-            <div key={index} className={styles.experienceItem}>
-              <div className={styles.experienceDate}>
-                <span>{job.startDate} - {job.endDate}</span>
-              </div>
-              <div className={styles.experienceContent}>
-                <h3>{job.position}</h3>
-                <h4>{job.company}</h4>
-                {job.location && <p className={styles.experienceLocation}>{job.location}</p>}
-                <ul className={styles.experienceDescription}>
-                  {job.description.map((item, idx) => (
-                    <li key={idx}>{item}</li>
-                  ))}
-                </ul>
-                {job.technologies && (
-                  <div className={styles.experienceTech}>
-                    {job.technologies.map((tech, techIdx) => (
-                      <span key={techIdx} className={styles.techTag}>{tech}</span>
-                    ))}
+      <SectionHead index={2} total={4} title="Experience" note="Where I&apos;ve worked" />
+
+      <div className={`paper--orange ${styles.body}`}>
+        <div className="container">
+          <PaperSheet>
+            <ol className={styles.timeline}>
+              {workExperienceData.map((job) => (
+                <li key={`${job.company}-${job.startDate}`} className={styles.item}>
+                  <span className={styles.dot} aria-hidden="true" />
+                  <div className={styles.date}>
+                    <span>{job.startDate}</span>
+                    <span className={styles.dateSep}>–</span>
+                    <span>{job.endDate}</span>
                   </div>
-                )}
-              </div>
-            </div>
-          ))}
+                  <div className={styles.content}>
+                    <h3 className={`display ${styles.position}`}>{job.position}</h3>
+                    <p className={styles.company}>{job.company}</p>
+                    {job.location && <p className={styles.location}>{job.location}</p>}
+                    <ul className={styles.desc}>
+                      {job.description.map((item, idx) => (
+                        <li key={idx}>{item}</li>
+                      ))}
+                    </ul>
+                    {job.technologies && (
+                      <div className={styles.tech}>
+                        {job.technologies.map((tech) => (
+                          <span key={tech} className="chip">{tech}</span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </PaperSheet>
         </div>
       </div>
     </section>

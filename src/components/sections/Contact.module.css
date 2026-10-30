@@ -1,0 +1,102 @@
+.contact {
+  padding-block: clamp(72px, 9vw, 130px) calc(clamp(56px, 7vw, 100px) + env(safe-area-inset-bottom));
+  overflow: clip;
+}
+
+.no {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8em;
+  margin-bottom: clamp(20px, 3vw, 40px);
+  letter-spacing: 0.38em;
+  color: var(--ink);
+}
+
+.list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Rules only between rows, not above the first or below the last */
+.list > li + li .link {
+  border-top: 2px solid var(--ink);
+}
+
+.link {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 24px;
+  padding: clamp(14px, 2vw, 26px) 0;
+  color: var(--ink);
+}
+
+.lead {
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(14px, 2.4vw, 36px);
+  min-width: 0;
+}
+
+.icon {
+  flex-shrink: 0;
+  width: clamp(2.6rem, 8vw, 7.4rem);
+  height: clamp(2.6rem, 8vw, 7.4rem);
+  fill: var(--ink);
+  filter: drop-shadow(0.06em 0.045em 0 var(--red));
+  transition: transform var(--dur-ui) var(--ease-out);
+}
+
+.name {
+  font-size: clamp(3.2rem, 11vw, 11rem);
+  line-height: 0.85;
+  letter-spacing: -0.02em;
+  text-shadow: 0.028em 0.018em 0 var(--red);
+  transition:
+    text-shadow var(--dur-ui) var(--ease-out),
+    transform var(--dur-ui) var(--ease-out);
+}
+
+.handle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  flex-shrink: 0;
+  font: 500 clamp(0.75rem, 1.1vw, 1rem)/1 var(--font-mono);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.arrow {
+  width: 1.2em;
+  height: 1.2em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform var(--dur-ui) var(--ease-out);
+}
+
+.link:hover .name {
+  transform: translate(-0.02em, -0.02em);
+  text-shadow: 0.06em 0.045em 0 var(--red);
+}
+
+.link:hover .arrow {
+  transform: translate(3px, -3px);
+}
+
+.link:hover .icon {
+  transform: translate(-2px, -2px) rotate(-6deg);
+}
+
+@media (max-width: 640px) {
+  .link {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}

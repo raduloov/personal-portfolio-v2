@@ -19,6 +19,8 @@ import roundwork from "../assets/projects/roundwork.webp";
 export interface Project {
   imageUrl: string;
   title: string;
+  /** Text shown in the card's window title bar, e.g. the site's host or an app name */
+  windowName: string;
   date: string;
   description: string;
   demoUrl: string | null;
@@ -32,6 +34,7 @@ export const projectsData: Project[] = [
   {
     imageUrl: roundwork,
     title: "Roundwork",
+    windowName: "roundwork.app",
     date: "01.10.2026",
     description:
       "A boxing and MMA round timer for iOS and Android. Bells, warning clacks and voice cues keep playing with the screen off and mix with your own music. Comes with built-in and custom presets and vibration cues, and works fully offline with no account or ads. Built with Expo and React Native.",
@@ -44,6 +47,7 @@ export const projectsData: Project[] = [
   {
     imageUrl: scorpionTrans,
     title: "Scorpion Trans",
+    windowName: "scorpion-trans.com",
     date: "06.04.2026",
     description:
       "A booking system for a vehicle inspection station in Dobrich, Bulgaria. Customers book inspection slots online and get email confirmations. The admin dashboard has day, week and month schedule views, rescheduling, blocked dates and configurable working hours. Built with Next.js, Prisma and Neon Postgres.",
@@ -55,6 +59,7 @@ export const projectsData: Project[] = [
   {
     imageUrl: fpsFoundation,
     title: "The Francesco Salerno Foundation",
+    windowName: "francescosalerno.org",
     date: "19.03.2026",
     description:
       "A nonprofit website with donations via Stripe, a blog, events, and multilingual support. Built with Payload CMS and Supabase.",
@@ -66,6 +71,7 @@ export const projectsData: Project[] = [
   {
     imageUrl: uniswapTracker,
     title: "Uniswap Position Tracker",
+    windowName: "uniswap-position-tracker.tsx",
     date: "19.09.2025",
     description:
       "An automated tracking system for Uniswap V3 liquidity positions that logs historical data and generates web reports. Tracks positions using The Graph API, calculates USD values and uncollected fees, and generates daily HTML reports with optional Supabase cloud storage integration.",
@@ -77,6 +83,7 @@ export const projectsData: Project[] = [
   {
     imageUrl: esp8266Pager,
     title: "ESP8266 Pager",
+    windowName: "esp8266-pager.c",
     date: "26.03.2025",
     description:
       "My first embedded project - an LCD display (with I2C module), buzzer and a button connected to a ESP8266 module via a breadboard. A simple websocket server with Express that serves a simple HTML page where the user can send a message that will be printed on the LCD display.",
@@ -88,6 +95,7 @@ export const projectsData: Project[] = [
   {
     imageUrl: teniskiVarna,
     title: "Teniski Varna",
+    windowName: "teniskivarna.com",
     date: "10.03.2025",
     description: "A real world online custom T-shirt store. Private repo",
     demoUrl: "https://teniskivarna.com/",
@@ -98,6 +106,7 @@ export const projectsData: Project[] = [
   {
     imageUrl: gymPals,
     title: "Gym Pals",
+    windowName: "gym-pals.tsx",
     date: "15.07.2023",
     description:
       "Track your workouts and share them with your friends. Built using the T3 stack (Next.js, tRPC, Prisma, Tailwind). Written in TypeScript.",
@@ -109,6 +118,7 @@ export const projectsData: Project[] = [
   {
     imageUrl: cathub,
     title: "CatHub - Android",
+    windowName: "cathub.apk",
     date: "16.12.2022",
     description:
       "CatHub is a very simple native Android app for browsing cats. Built using Jetpack Compose and Kotlin.",
@@ -120,6 +130,7 @@ export const projectsData: Project[] = [
   {
     imageUrl: yummies,
     title: "Yummies - iOS",
+    windowName: "yummies-ios.app",
     date: "18.08.2022",
     description:
       "Yummies is my first attempt at building a native iOS app using Swift and SwiftUI. A recipe browser where you can pin your favorites ones. Powered by Edamam Recipe Search API.",
@@ -131,6 +142,7 @@ export const projectsData: Project[] = [
   {
     imageUrl: fsBooks,
     title: "Fullstack Books",
+    windowName: "fullstack-books.tsx",
     date: "06.06.2022",
     description:
       'Fullstack Books is my first attempt at building a fullstack MERN application. An online book library where you can browse books with the help of the Google Books API, create an account and save them to "Favorites" and "To Read" lists. The front-end is written in TypeScript and the server in JavaScript.',
@@ -142,6 +154,7 @@ export const projectsData: Project[] = [
   {
     imageUrl: rnPseudo,
     title: "React Native Pseudo Shop",
+    windowName: "react-native-pseudo-shop.app",
     date: "11.04.2022",
     description: "Pseudo Shop (one of my earlier projects) reimagined as a native mobile application.",
     demoUrl: null,
@@ -152,6 +165,7 @@ export const projectsData: Project[] = [
   {
     imageUrl: rnMovies,
     title: "React Native Movies App",
+    windowName: "react-native-movies.app",
     date: "21.03.2022",
     description:
       "My first mobile application [iOS + Android]. Browse movies, watch trailers and add the best to your favorites. Built using React Native and Firebase, written in TypeScript.",
@@ -163,6 +177,7 @@ export const projectsData: Project[] = [
   {
     imageUrl: chatFirebase,
     title: "Chat App with Firebase",
+    windowName: "chat-app.tsx",
     date: "12.03.2022",
     description:
       "Real time messaging app, built with React and Chakra UI for the front-end and Firebase Firestore for the back-end. Written in TypeScript.",
@@ -174,6 +189,7 @@ export const projectsData: Project[] = [
   {
     imageUrl: bulbup,
     title: "Bulb Up! Forum",
+    windowName: "bulb-up.tsx",
     date: "20.02.2022",
     description:
       "Log in to share your ideas or ask questions, give feedback or answer others, or give a post a bulb. Bulb-Up is built using React and Tailwind for the front-end and Firebase for the back-end database. Written in TypeScript.",
@@ -185,6 +201,7 @@ export const projectsData: Project[] = [
   {
     imageUrl: pseudo,
     title: "Pseudo Shop",
+    windowName: "pseudo-shop.tsx",
     date: "24.01.2022",
     description:
       "Web store app with dummy products, built with React, Redux and Tailwind. Connected to a backend database using Firebase. Cart items saved to and loaded from Local Storage",
@@ -196,6 +213,7 @@ export const projectsData: Project[] = [
   {
     imageUrl: weather,
     title: "Weather App",
+    windowName: "weatherfy-app.tsx",
     date: "15.12.2021",
     description: "Get weather information in real time for your current location or a manually typed one",
     demoUrl: "https://weatherfy-app.netlify.app/",
@@ -206,6 +224,7 @@ export const projectsData: Project[] = [
   {
     imageUrl: calc,
     title: "Calculator",
+    windowName: "basic-calc.js",
     date: "08.12.2021",
     description: "Simple JavaScript calculator",
     demoUrl: "https://basic-calcc.netlify.app/",
