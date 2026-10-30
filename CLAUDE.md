@@ -26,13 +26,13 @@ npm run preview
 
 ### Component Structure
 - **Sections** (`src/components/sections/`): Main page sections (Hero, About, Projects, WorkExperience, Certifications)
-- **UI Components** (`src/components/ui/`): Reusable components (Button, Card, Modal, Navigation, ProjectCard, etc.)
+- **UI Components** (`src/components/ui/`): Reusable components (Navigation, SectionHead, PaperSheet, Tape, ProjectCard, Modal, Spark)
 - **Data Layer** (`src/data/`): Centralized data files with TypeScript interfaces for projects, certifications, and work experience
 
 ### Key Patterns
 - **CSS Modules**: All components use `.module.css` files for scoped styling
 - **TypeScript Interfaces**: Strongly typed data structures for all content
-- **Component Composition**: UI components build on base components (e.g., ProjectCard uses Card and Image)
+- **Component Composition**: sections compose the shared UI pieces (e.g., Experience and Certifications both render on PaperSheet)
 - **Single Page Application**: Smooth scrolling navigation with active section tracking
 
 ### Styling Approach
