@@ -1,5 +1,4 @@
 import { useRef, useState } from 'react'
-import googlePlayBadge from '../../assets/google-play-badge.png'
 import styles from './ProjectCard.module.css'
 
 const MAX_TILT = 8
@@ -110,8 +109,11 @@ export function ProjectCard({
                 </a>
               )}
               {playStoreUrl && (
-                <a href={playStoreUrl} target="_blank" rel="noopener noreferrer" className={styles.storeBadge}>
-                  <img src={googlePlayBadge} alt="Get it on Google Play" />
+                <a href={playStoreUrl} target="_blank" rel="noopener noreferrer" className="btn btn--sm">
+                  <svg className="ico" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M3.6 2.3 13.3 12l-9.7 9.7a1.6 1.6 0 0 1-.5-1.2V3.5c0-.5.2-.9.5-1.2zm11.1 11.1 2.4 2.4-9.5 5.4c-.6.3-1.2.4-1.7.2l8.8-8zm0-2.8L5.9 2.6c.5-.2 1.1-.1 1.7.2l9.5 5.4-2.4 2.4zm3.6 2-3.3 1.9L12.6 12l2.4-2.5 3.3 1.9c1.2.7 1.2 1.6 0 2.2z" />
+                  </svg>
+                  Google Play
                 </a>
               )}
             </div>
