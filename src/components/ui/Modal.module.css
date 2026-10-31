@@ -26,38 +26,25 @@
   animation: modalIn 0.45s var(--ease-spring);
 }
 
-.modalContent::before {
-  content: '';
-  position: absolute;
-  top: -12px;
-  left: 50%;
-  width: 110px;
-  height: 28px;
-  background: rgba(250, 191, 11, 0.8);
-  transform: translateX(-50%) rotate(-3deg);
-  clip-path: polygon(0 8%, 6% 0, 12% 10%, 18% 2%, 82% 4%, 88% 0, 94% 9%, 100% 2%, 97% 50%, 100% 96%, 92% 100%, 86% 92%, 14% 96%, 8% 100%, 2% 92%, 4% 50%);
-  pointer-events: none;
-  z-index: 1;
-}
-
 .modalImageContent {
   padding: 16px 16px 20px;
 }
 
+/* Sits on the overlay, outside the paper, so it never scrolls away */
 .modalClose {
-  position: absolute;
-  top: 10px;
-  right: 10px;
+  position: fixed;
+  top: 20px;
+  right: 20px;
   z-index: 2;
   display: grid;
   place-items: center;
-  width: 40px;
-  height: 40px;
+  width: 48px;
+  height: 48px;
   border: 1.5px solid var(--ink);
   border-radius: 999px;
   background: var(--yellow);
   color: var(--ink);
-  font: 900 1.4rem/1 var(--font-heavy);
+  font: 900 1.6rem/1 var(--font-heavy);
   box-shadow: 2px 2px 0 var(--red);
   transition: transform var(--dur-press) var(--ease-out), box-shadow var(--dur-press) var(--ease-out);
 }
@@ -90,7 +77,12 @@
 
 @media (max-width: 768px) {
   .modalOverlay {
-    padding: 16px;
+    padding: 72px 16px 16px;
+  }
+
+  .modalClose {
+    top: 14px;
+    right: 14px;
   }
 
   .modalContent {

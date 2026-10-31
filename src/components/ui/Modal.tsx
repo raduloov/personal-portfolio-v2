@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { createPortal } from 'react-dom'
 import styles from './Modal.module.css'
 
 interface ModalProps {
@@ -28,14 +29,17 @@ export function Modal({ isOpen, onClose, children }: ModalProps) {
 
   if (!isOpen) return null
 
-  return (
+  // Portal to the body so section stacking contexts (transforms, z-index)
+  // can't trap the overlay beneath the header or grain
+  return createPortal(
     <div className={styles.modalOverlay} onClick={onClose}>
+      <button className={styles.modalClose} onClick={onClose} aria-label="Close modal">
+        ×
+      </button>
       <div className={`${styles.modalContent} ${styles.modalImageContent}`} onClick={(e) => e.stopPropagation()}>
-        <button className={styles.modalClose} onClick={onClose} aria-label="Close modal">
-          ×
-        </button>
         {children}
       </div>
-    </div>
+    </div>,
+    document.body,
   )
 }
