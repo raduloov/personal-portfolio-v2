@@ -188,6 +188,13 @@ img, svg, canvas {
   animation: grain 0.9s steps(1) infinite;
 }
 
+/* Phones: lighter grain; the small screen and higher pixel density make it read heavier */
+@media (max-width: 768px) {
+  .grain {
+    opacity: 0.05;
+  }
+}
+
 @keyframes grain {
   0% { transform: translate(0, 0); }
   17% { transform: translate(-23px, 31px); }

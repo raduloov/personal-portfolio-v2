@@ -122,6 +122,10 @@
 }
 
 @media (max-width: 768px) {
+  .card {
+    padding: 34px 22px 26px;
+  }
+
   .sheet:not(.card) {
     padding: 44px 18px 40px;
   }

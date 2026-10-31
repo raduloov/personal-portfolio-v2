@@ -134,10 +134,43 @@
 @media (max-width: 600px) {
   .grid {
     grid-template-columns: minmax(0, 1fr);
-    gap: 36px;
+    gap: 64px;
   }
 
+  /* One column: no vertical offsets and only a hint of tilt, so the stack
+     reads as a list rather than a pile */
   .slot {
     --y: 0px;
+  }
+
+  .slot:nth-child(odd) { --rot: -0.8deg; }
+  .slot:nth-child(even) { --rot: 0.8deg; }
+
+  /* Breathe inside the card: wider gaps, the stamp tucked into the top
+     corner instead of sitting on the date, and the title clear of it */
+  .card > div > div {
+    gap: 18px;
+  }
+
+  .head {
+    padding-bottom: 14px;
+  }
+
+  .stamp {
+    top: 14px;
+    right: -14px;
+  }
+
+  .title {
+    margin-top: 30px;
+    font-size: 1.5rem;
+  }
+
+  .skills {
+    gap: 8px;
+  }
+
+  .foot {
+    padding-top: 14px;
   }
 }
