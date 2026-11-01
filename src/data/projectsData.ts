@@ -15,7 +15,6 @@ import uniswapTracker from "../assets/projects/uniswap.png";
 import fpsFoundation from "../assets/fps-foundation.png";
 import scorpionTrans from "../assets/projects/scorpion-trans.webp";
 import roundwork from "../assets/projects/roundwork.webp";
-import betterclick from "../assets/projects/betterclick.png";
 
 export interface Project {
   imageUrl: string;
@@ -44,18 +43,6 @@ export const projectsData: Project[] = [
     playStoreUrl: "https://play.google.com/store/apps/details?id=com.yavorradulov.roundwork",
     tags: ["React Native", "Expo", "TypeScript", "iOS", "Android", "Zustand"],
     language: "TypeScript"
-  },
-  {
-    imageUrl: betterclick,
-    title: "betterclick",
-    windowName: "betterclick.app",
-    date: "04.06.2026",
-    description:
-      "A macOS menu-bar app that fires the Logitech MX Master 4's haptic motor on every click, with a waveform per mouse button and per-app overrides. It listens for clicks through a listen-only CGEventTap, so it adds no latency, and sends the pulse to the HapticWeb plugin over a loopback WebSocket. The core logic is a standalone, unit-tested Swift package.",
-    demoUrl: null,
-    gitUrl: "https://github.com/raduloov/betterclick",
-    tags: ["macOS", "Swift", "SwiftUI", "CGEventTap", "WebSocket"],
-    language: "Swift"
   },
   {
     imageUrl: scorpionTrans,
