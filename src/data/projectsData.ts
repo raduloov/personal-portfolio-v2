@@ -34,18 +34,6 @@ export interface Project {
 
 export const projectsData: Project[] = [
   {
-    imageUrl: jerryCam,
-    title: "Jerry Cam",
-    windowName: "jerry-cam.web.app",
-    date: "28.10.2026",
-    description:
-      "A dog camera built from an old Android phone. The phone runs a Kotlin app that keeps the camera and mic alive as a foreground service and streams over WebRTC; the viewer is a small web app on Firebase Hosting with live video, sound, hold-to-talk, the flashlight and the phone's battery level. Signalling goes through Firebase Realtime Database with rules locked to a short list of accounts.",
-    demoUrl: null,
-    gitUrl: "https://github.com/raduloov/jerry-cam",
-    tags: ["Android", "Kotlin", "WebRTC", "Firebase", "PWA"],
-    language: "Kotlin"
-  },
-  {
     imageUrl: roundwork,
     title: "Roundwork",
     windowName: "roundwork.app",
@@ -57,18 +45,6 @@ export const projectsData: Project[] = [
     playStoreUrl: "https://play.google.com/store/apps/details?id=com.yavorradulov.roundwork",
     tags: ["React Native", "Expo", "TypeScript", "iOS", "Android", "Zustand"],
     language: "TypeScript"
-  },
-  {
-    imageUrl: betterclick,
-    title: "betterclick",
-    windowName: "betterclick.app",
-    date: "04.06.2026",
-    description:
-      "A macOS menu-bar app that fires the Logitech MX Master 4's haptic motor on every click, with a waveform per mouse button and per-app overrides. It listens for clicks through a listen-only CGEventTap, so it adds no latency, and sends the pulse to the HapticWeb plugin over a loopback WebSocket. The core logic is a standalone, unit-tested Swift package.",
-    demoUrl: null,
-    gitUrl: "https://github.com/raduloov/betterclick",
-    tags: ["macOS", "Swift", "SwiftUI", "CGEventTap", "WebSocket"],
-    language: "Swift"
   },
   {
     imageUrl: scorpionTrans,
@@ -95,16 +71,28 @@ export const projectsData: Project[] = [
     language: "TypeScript"
   },
   {
-    imageUrl: esp8266Pager,
-    title: "ESP8266 Pager",
-    windowName: "esp8266-pager.c",
-    date: "26.03.2025",
+    imageUrl: jerryCam,
+    title: "Jerry Cam",
+    windowName: "jerry-cam.web.app",
+    date: "28.10.2026",
     description:
-      "My first embedded project - an LCD display (with I2C module), buzzer and a button connected to a ESP8266 module via a breadboard. A simple websocket server with Express that serves a simple HTML page where the user can send a message that will be printed on the LCD display.",
-    demoUrl: "https://esp8266-pager.onrender.com/",
-    gitUrl: "https://github.com/raduloov/esp8266-pager",
-    tags: ["ESP8266", "WebSocket", "Express", "IoT"],
-    language: "C++"
+      "A dog camera built from an old Android phone. The phone runs a Kotlin app that keeps the camera and mic alive as a foreground service and streams over WebRTC; the viewer is a small web app on Firebase Hosting with live video, sound, hold-to-talk, the flashlight and the phone's battery level. Signalling goes through Firebase Realtime Database with rules locked to a short list of accounts.",
+    demoUrl: null,
+    gitUrl: "https://github.com/raduloov/jerry-cam",
+    tags: ["Android", "Kotlin", "WebRTC", "Firebase", "PWA"],
+    language: "Kotlin"
+  },
+  {
+    imageUrl: betterclick,
+    title: "betterclick",
+    windowName: "betterclick.app",
+    date: "04.06.2026",
+    description:
+      "A macOS menu-bar app that fires the Logitech MX Master 4's haptic motor on every click, with a waveform per mouse button and per-app overrides. It listens for clicks through a listen-only CGEventTap, so it adds no latency, and sends the pulse to the HapticWeb plugin over a loopback WebSocket. The core logic is a standalone, unit-tested Swift package.",
+    demoUrl: null,
+    gitUrl: "https://github.com/raduloov/betterclick",
+    tags: ["macOS", "Swift", "SwiftUI", "CGEventTap", "WebSocket"],
+    language: "Swift"
   },
   {
     imageUrl: teniskiVarna,
@@ -116,6 +104,18 @@ export const projectsData: Project[] = [
     gitUrl: null,
     tags: ["E-commerce", "React", "TypeScript"],
     language: "TypeScript"
+  },
+  {
+    imageUrl: esp8266Pager,
+    title: "ESP8266 Pager",
+    windowName: "esp8266-pager.c",
+    date: "26.03.2025",
+    description:
+      "My first embedded project - an LCD display (with I2C module), buzzer and a button connected to a ESP8266 module via a breadboard. A simple websocket server with Express that serves a simple HTML page where the user can send a message that will be printed on the LCD display.",
+    demoUrl: "https://esp8266-pager.onrender.com/",
+    gitUrl: "https://github.com/raduloov/esp8266-pager",
+    tags: ["ESP8266", "WebSocket", "Express", "IoT"],
+    language: "C++"
   },
   {
     imageUrl: uniswapTracker,
