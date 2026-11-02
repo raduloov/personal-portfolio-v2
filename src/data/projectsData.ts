@@ -16,6 +16,7 @@ import fpsFoundation from "../assets/fps-foundation.png";
 import scorpionTrans from "../assets/projects/scorpion-trans.webp";
 import roundwork from "../assets/projects/roundwork.webp";
 import betterclick from "../assets/projects/betterclick.png";
+import jerryCam from "../assets/projects/jerry-cam.png";
 
 export interface Project {
   imageUrl: string;
@@ -32,6 +33,18 @@ export interface Project {
 }
 
 export const projectsData: Project[] = [
+  {
+    imageUrl: jerryCam,
+    title: "Jerry Cam",
+    windowName: "jerry-cam.web.app",
+    date: "28.10.2026",
+    description:
+      "A dog camera built from an old Android phone. The phone runs a Kotlin app that keeps the camera and mic alive as a foreground service and streams over WebRTC; the viewer is a small web app on Firebase Hosting with live video, sound, hold-to-talk, the flashlight and the phone's battery level. Signalling goes through Firebase Realtime Database with rules locked to a short list of accounts.",
+    demoUrl: null,
+    gitUrl: "https://github.com/raduloov/jerry-cam",
+    tags: ["Android", "Kotlin", "WebRTC", "Firebase", "PWA"],
+    language: "Kotlin"
+  },
   {
     imageUrl: roundwork,
     title: "Roundwork",
